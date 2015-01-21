@@ -280,8 +280,8 @@ def createBuild(baseDir, outFile=None, locales=None, buildNum=None, releaseBuild
 
   metadata = readMetadata(baseDir)
   version = metadata.get('general', 'version')
-  if not releaseBuild:
-    version += '.' + buildNum
+#  if not releaseBuild:
+#    version += '.' + buildNum
 
   if limitMetadata:
     for option in metadata.options('compat'):
