@@ -1664,17 +1664,12 @@ function addSubscription()
     let wrapper = (wrappers.length ? wrappers[0] : null);
     if (wrapper && wrapper.addTab)
     {
-      wrapper.addTab("chrome://adblockplus/content/ui/firstRun.xhtml");
+      wrapper.addTab("chrome://adblockplus/content/ui/firstRun.xul");
     }
     else
     {
-      let dialogSource = '\
-        <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>\
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="document.title=content.document.title" buttons="accept" width="500" height="600">\
-          <iframe type="content-primary" flex="1" src="chrome://adblockplus/content/ui/firstRun.xhtml"/>\
-        </dialog>';
       Utils.windowWatcher.openWindow(wrapper ? wrapper.window : null,
-                                     "data:application/vnd.mozilla.xul+xml," + encodeURIComponent(dialogSource),
+                                     "chrome://adblockplus/content/ui/firstRun.xul",
                                      "_blank", "chrome,centerscreen,resizable,dialog=no", null);
     }
   }

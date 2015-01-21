@@ -6,26 +6,49 @@
 
 function init()
 {
+
+  if (Utils.isFennec)
+  {
+    let topWnd = window.QueryInterface(Ci.nsIInterfaceRequestor)
+                       .getInterface(Ci.nsIWebNavigation)
+                       .QueryInterface(Ci.nsIDocShellTreeItem)
+                       .rootTreeItem
+                       .QueryInterface(Ci.nsIInterfaceRequestor)
+                       .getInterface(Ci.nsIDOMWindow);
+    if (topWnd.wrappedJSObject)
+      topWnd = topWnd.wrappedJSObject;
+
+    // window.close() closes the entire window (bug 642604), make sure to close
+    // only a single tab instead.
+    if ("BrowserUI" in topWnd)
+    {
+      window.close = function()
+      {
+        topWnd.BrowserUI.closeTab();
+      };
+    }
+  }
+
   generateLinkText(E("changeDescription"));
 
   for each (let subscription in FilterStorage.subscriptions)
   {
-    if (subscription instanceof DownloadableSubscription && subscription.url != Prefs.subscriptions_exceptionsurl && !subscription.disabled)
+    if (subscription instanceof DownloadableSubscription && subscription.url != Prefs.subscriptions_exceptionsurl)
     {
       E("listName").textContent = subscription.title;
 
       let link = E("listHomepage");
-      link.setAttribute("href", subscription.homepage);
-      link.setAttribute("title", subscription.homepage);
+      link.setAttribute("_url", subscription.homepage);
+      link.setAttribute("tooltiptext", subscription.homepage);
 
-      E("listNameContainer").removeAttribute("hidden");
-      E("listNone").setAttribute("hidden", "true");
+      E("listNameContainer").hidden = false;
+      E("listNone").hidden = true;
       break;
     }
   }
 
   if (FilterStorage.subscriptions.some(function(s) s.url == Prefs.subscriptions_exceptionsurl))
-    E("acceptableAds").removeAttribute("hidden");
+    E("acceptableAds").hidden = false;
 }
 
 function generateLinkText(element)
