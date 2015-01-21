@@ -32,7 +32,7 @@ var Utils =
    */
   get addonID()
   {
-    return "{adblocklatitude@addons.palemoon.org}";
+    return "adblocklatitude@addons.palemoon.org";
   },
 
   /**
