@@ -1,7 +1,18 @@
 /*
- * This Source Code is subject to the terms of the Mozilla Public License
- * version 2.0 (the "License"). You can obtain a copy of the License at
- * http://mozilla.org/MPL/2.0/.
+ * This file is part of the Adblock Plus,
+ * Copyright (C) 2006-2012 Eyeo GmbH
+ *
+ * Adblock Plus is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * Adblock Plus is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -280,6 +291,10 @@ var FilterView =
   {
     if (value == this._subscription)
       return;
+
+    // Make sure the editor is done before we update the list.
+    if (this.treeElement)
+      this.treeElement.stopEditing(true);
 
     this._subscription = value;
     this.refresh(true);
@@ -612,7 +627,7 @@ var FilterView =
       this.editDummy = {filter: {text: ""}};
 
       let atomService = Cc["@mozilla.org/atom-service;1"].getService(Ci.nsIAtomService);
-      let stringAtoms = ["col-filter", "col-enabled", "col-hitcount", "col-lasthit", "type-comment", "type-filterlist", "type-whitelist", "type-elemhide", "type-invalid"];
+      let stringAtoms = ["col-filter", "col-enabled", "col-hitcount", "col-lasthit", "type-comment", "type-filterlist", "type-whitelist", "type-elemhide", "type-elemhideexception", "type-invalid"];
       let boolAtoms = ["selected", "dummy", "slow", "disabled"];
 
       this.atoms = {};
@@ -662,42 +677,61 @@ var FilterView =
     return null;
   },
 
+  generateProperties: function(list, properties)
+  {
+    if (properties)
+    {
+      // Gecko 21 and below: we have an nsISupportsArray parameter, add atoms
+      // to that.
+      for (let i = 0; i < list.length; i++)
+        if (list[i] in this.atoms)
+          properties.AppendElement(this.atoms[list[i]]);
+      return null;
+    }
+    else
+    {
+      // Gecko 22+: no parameter, just return a string
+      return list.join(" ");
+    }
+  },
+
   getColumnProperties: function(col, properties)
   {
-    col = col.id;
-
-    if (col in this.atoms)
-      properties.AppendElement(this.atoms[col]);
+    return this.generateProperties(["col-" + col.id], properties);
   },
 
   getRowProperties: function(row, properties)
   {
     if (row < 0 || row >= this.data.length)
-      return;
+      return "";
 
+    let list = [];
     let filter = this.data[row].filter;
-    properties.AppendElement(this.atoms["selected-" + this.selection.isSelected(row)]);
-    properties.AppendElement(this.atoms["slow-" + (filter instanceof RegExpFilter && defaultMatcher.isSlowFilter(filter))]);
+    list.push("selected-" + this.selection.isSelected(row));
+    list.push("slow-" + (filter instanceof RegExpFilter && defaultMatcher.isSlowFilter(filter)));
     if (filter instanceof ActiveFilter)
-      properties.AppendElement(this.atoms["disabled-" + filter.disabled]);
-    properties.AppendElement(this.atoms["dummy-" + ("dummy" in filter)]);
+      list.push("disabled-" + filter.disabled);
+    list.push("dummy-" + ("dummy" in filter));
 
     if (filter instanceof CommentFilter)
-      properties.AppendElement(this.atoms["type-comment"]);
+      list.push("type-comment");
     else if (filter instanceof BlockingFilter)
-      properties.AppendElement(this.atoms["type-filterlist"]);
+      list.push("type-filterlist");
     else if (filter instanceof WhitelistFilter)
-      properties.AppendElement(this.atoms["type-whitelist"]);
+      list.push("type-whitelist");
     else if (filter instanceof ElemHideFilter)
-      properties.AppendElement(this.atoms["type-elemhide"]);
+      list.push("type-elemhide");
+    else if (filter instanceof ElemHideException)
+      list.push("type-elemhideexception");
     else if (filter instanceof InvalidFilter)
-      properties.AppendElement(this.atoms["type-invalid"]);
+      list.push("type-invalid");
+
+    return this.generateProperties(list, properties);
   },
 
   getCellProperties: function(row, col, properties)
   {
-    this.getColumnProperties(col, properties);
-    this.getRowProperties(row, properties);
+    return this.getRowProperties(row, properties) + " " + this.getColumnProperties(col, properties);
   },
 
   cycleHeader: function(col)
