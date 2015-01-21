@@ -21,6 +21,7 @@ KNOWN_APPS = {
   'songbird':   'songbird@songbirdnest.com',
   'thunderbird':  '{3550f703-e582-4d05-9a08-453d09bdfdc6}',
   'toolkit':    'toolkit@mozilla.org',
+  'palemoon':    '{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}',
 }
 
 defaultLocale = 'en-US'
