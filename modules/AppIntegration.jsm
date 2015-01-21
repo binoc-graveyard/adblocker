@@ -16,7 +16,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblockplus-modules/content/";
+let baseURL = "chrome://adblocklatitude-modules/content/";
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import(baseURL + "TimeLine.jsm");
@@ -990,7 +990,7 @@ WindowWrapper.prototype =
     {
       let subscription = {url: url, title: title, disabled: false, external: false,
                           mainSubscriptionTitle: mainSubscriptionTitle, mainSubscriptionURL: mainSubscriptionURL};
-      this.window.openDialog("chrome://adblockplus/content/ui/subscriptionSelection.xul", "_blank",
+      this.window.openDialog("chrome://adblocklatitude/content/ui/subscriptionSelection.xul", "_blank",
                              "chrome,centerscreen,resizable,dialog=no", subscription, null);
     }
     else
@@ -1200,7 +1200,7 @@ WindowWrapper.prototype =
     if (wnd)
       wnd.focus();
     else
-      this.window.openDialog("chrome://adblockplus/content/ui/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
+      this.window.openDialog("chrome://adblocklatitude/content/ui/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
   },
 
   /**
@@ -1254,13 +1254,13 @@ WindowWrapper.prototype =
       if (sidebar && (!Prefs.detachsidebar || !sidebar.hidden))
       {
         this.E("abp-sidebar-splitter").hidden = !sidebar.hidden;
-        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://adblockplus/content/ui/sidebar.xul" : "about:blank");
+        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://adblocklatitude/content/ui/sidebar.xul" : "about:blank");
         sidebar.hidden = !sidebar.hidden;
         if (sidebar.hidden)
           this.getBrowser().contentWindow.focus();
       }
       else
-        this.detachedSidebar = this.window.openDialog("chrome://adblockplus/content/ui/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
+        this.detachedSidebar = this.window.openDialog("chrome://adblocklatitude/content/ui/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
     }
   },
 
@@ -1465,7 +1465,7 @@ WindowWrapper.prototype =
     if (!item)
       return;
 
-    this.window.openDialog("chrome://adblockplus/content/ui/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
+    this.window.openDialog("chrome://adblocklatitude/content/ui/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
   }
 };
 
@@ -1520,7 +1520,7 @@ function initOptionsDoc(/**Document*/ doc)
 {
   function E(id) doc.getElementById(id);
 
-  E("adblockplus-filters").addEventListener("command", Utils.openFiltersDialog, false);
+  E("adblocklatitude-filters").addEventListener("command", Utils.openFiltersDialog, false);
 
   let wrapper = wrappers.length ? wrappers[0] : null;
   let hasToolbar = wrapper && wrapper.getDefaultToolbar && wrapper.getDefaultToolbar();
@@ -1528,47 +1528,47 @@ function initOptionsDoc(/**Document*/ doc)
   let hasStatusBar = wrapper && wrapper.E("abp-status");
 
   let syncEngine = Sync.getEngine();
-  E("adblockplus-sync").collapsed = !syncEngine;
+  E("adblocklatitude-sync").collapsed = !syncEngine;
 
-  E("adblockplus-showinaddonbar").collapsed = !hasAddonBar;
-  E("adblockplus-showintoolbar").collapsed = !hasToolbar || hasAddonBar;
-  E("adblockplus-showinstatusbar").collapsed = !hasStatusBar || hasAddonBar;
+  E("adblocklatitude-showinaddonbar").collapsed = !hasAddonBar;
+  E("adblocklatitude-showintoolbar").collapsed = !hasToolbar || hasAddonBar;
+  E("adblocklatitude-showinstatusbar").collapsed = !hasStatusBar || hasAddonBar;
 
   function initCheckboxes()
   {
-    if (!("value" in E("adblockplus-showinaddonbar")))
+    if (!("value" in E("adblocklatitude-showinaddonbar")))
     {
       // XBL bindings didn't apply yet (bug 708397), try later
       Utils.runAsync(initCheckboxes);
       return;
     }
 
-    E("adblockplus-savestats").value = Prefs.savestats;
-    E("adblockplus-savestats").addEventListener("command", function()
+    E("adblocklatitude-savestats").value = Prefs.savestats;
+    E("adblocklatitude-savestats").addEventListener("command", function()
     {
       wrapper.toggleSaveStats.call({window: doc.defaultView});
-      E("adblockplus-savestats").value = Prefs.savestats;
+      E("adblocklatitude-savestats").value = Prefs.savestats;
     }, false);
 
-    E("adblockplus-sync").value = syncEngine && syncEngine.enabled;
-    E("adblockplus-sync").addEventListener("command", function()
+    E("adblocklatitude-sync").value = syncEngine && syncEngine.enabled;
+    E("adblocklatitude-sync").addEventListener("command", function()
     {
-      E("adblockplus-sync").value = AppIntegration.toggleSync();
+      E("adblocklatitude-sync").value = AppIntegration.toggleSync();
     }, false);
 
     if (wrapper)
     {
-      E("adblockplus-showinaddonbar").value =
-        E("adblockplus-showintoolbar").value =
+      E("adblocklatitude-showinaddonbar").value =
+        E("adblocklatitude-showintoolbar").value =
         wrapper.isToolbarIconVisible();
       let handler = function()
       {
-        E("adblockplus-showinaddonbar").value =
-          E("adblockplus-showintoolbar").value =
+        E("adblocklatitude-showinaddonbar").value =
+          E("adblocklatitude-showintoolbar").value =
           AppIntegration.toggleToolbarIcon();
       };
-      E("adblockplus-showinaddonbar").addEventListener("command", handler, false);
-      E("adblockplus-showintoolbar").addEventListener("command", handler, false);
+      E("adblocklatitude-showinaddonbar").addEventListener("command", handler, false);
+      E("adblocklatitude-showintoolbar").addEventListener("command", handler, false);
     }
   }
   initCheckboxes();
@@ -1664,12 +1664,12 @@ function addSubscription()
     let wrapper = (wrappers.length ? wrappers[0] : null);
     if (wrapper && wrapper.addTab)
     {
-      wrapper.addTab("chrome://adblockplus/content/ui/firstRun.xul");
+      wrapper.addTab("chrome://adblocklatitude/content/ui/firstRun.xul");
     }
     else
     {
       Utils.windowWatcher.openWindow(wrapper ? wrapper.window : null,
-                                     "chrome://adblockplus/content/ui/firstRun.xul",
+                                     "chrome://adblocklatitude/content/ui/firstRun.xul",
                                      "_blank", "chrome,centerscreen,resizable,dialog=no", null);
     }
   }
@@ -1678,7 +1678,7 @@ function addSubscription()
   {
     // Load subscriptions data
     let request = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-    request.open("GET", "chrome://adblockplus/content/ui/subscriptions.xml");
+    request.open("GET", "chrome://adblocklatitude/content/ui/subscriptions.xml");
     request.addEventListener("load", function()
     {
       let node = Utils.chooseFilterSubscription(request.responseXML.getElementsByTagName("subscription"));

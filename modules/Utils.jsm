@@ -82,7 +82,7 @@ var Utils =
     let locale = "en-US";
     try
     {
-      locale = Utils.chromeRegistry.getSelectedLocale("adblockplus");
+      locale = Utils.chromeRegistry.getSelectedLocale("adblocklatitude");
     }
     catch (e)
     {
@@ -110,7 +110,7 @@ var Utils =
    */
   getString: function(name)
   {
-    let stringBundle = Services.strings.createBundle("chrome://adblockplus/locale/global.properties");
+    let stringBundle = Services.strings.createBundle("chrome://adblocklatitude/locale/global.properties");
     Utils.getString = function(name)
     {
       return stringBundle.GetStringFromName(name);
@@ -302,7 +302,7 @@ var Utils =
     }
     else
     {
-      Utils.windowWatcher.openWindow(null, "chrome://adblockplus/content/ui/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
+      Utils.windowWatcher.openWindow(null, "chrome://adblocklatitude/content/ui/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
     }
   },
 
@@ -352,7 +352,7 @@ var Utils =
    */
   loadDocLink: function(/**String*/ linkID)
   {
-    let baseURL = "chrome://adblockplus-modules/content/";
+    let baseURL = "chrome://adblocklatitude-modules/content/";
     Cu.import(baseURL + "Prefs.jsm");
 
     let link = Prefs.documentation_link.replace(/%LINK%/g, linkID).replace(/%LANG%/g, Utils.appLocale);

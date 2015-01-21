@@ -15,13 +15,13 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblockplus-modules/content/";
+let baseURL = "chrome://adblocklatitude-modules/content/";
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import(baseURL + "TimeLine.jsm");
 Cu.import(baseURL + "Utils.jsm");
 
-const prefRoot = "extensions.adblockplus.";
+const prefRoot = "extensions.adblocklatitude.";
 
 /**
  * Will be set to true if Adblock Plus is scheduled to be uninstalled on

@@ -15,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblockplus-modules/content/";
+let baseURL = "chrome://adblocklatitude-modules/content/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "Prefs.jsm");
 Cu.import(baseURL + "RequestNotifier.jsm");
@@ -153,7 +153,7 @@ var objTabs =
       // Load CSS asynchronously
       try {
         let request = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-        request.open("GET", "chrome://adblockplus/content/objtabs.css");
+        request.open("GET", "chrome://adblocklatitude/content/objtabs.css");
         request.overrideMimeType("text/plain");
 
         let me = this;

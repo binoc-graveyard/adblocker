@@ -17,7 +17,7 @@ const Cu = Components.utils;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("chrome://adblockplus-modules/content/Utils.jsm");
+Cu.import("chrome://adblocklatitude-modules/content/Utils.jsm");
 
 /**
  * nsIContentPolicy and nsIChannelEventSink implementation

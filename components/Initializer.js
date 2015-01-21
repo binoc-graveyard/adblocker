@@ -56,14 +56,14 @@ Initializer.prototype =
           try
           {
             // Gecko 2.0 and higher - chrome URLs can be loaded directly
-            Cu.import("chrome://adblockplus-modules/content/Bootstrap.jsm");
+            Cu.import("chrome://adblocklatitude-modules/content/Bootstrap.jsm");
           }
           catch (e)
           {
             // Gecko 1.9.x - have to convert chrome URLs to file URLs first
             let chromeRegistry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
             let ioService = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
-            let bootstrapURL = chromeRegistry.convertChromeURL(ioService.newURI("chrome://adblockplus-modules/content/Bootstrap.jsm", null, null));
+            let bootstrapURL = chromeRegistry.convertChromeURL(ioService.newURI("chrome://adblocklatitude-modules/content/Bootstrap.jsm", null, null));
             Cu.import(bootstrapURL.spec);
           }
           Bootstrap.startup();
