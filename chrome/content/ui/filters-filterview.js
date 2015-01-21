@@ -627,7 +627,7 @@ var FilterView =
       this.editDummy = {filter: {text: ""}};
 
       let atomService = Cc["@mozilla.org/atom-service;1"].getService(Ci.nsIAtomService);
-      let stringAtoms = ["col-filter", "col-enabled", "col-hitcount", "col-lasthit", "type-comment", "type-filterlist", "type-whitelist", "type-elemhide", "type-elemhideexception", "type-invalid"];
+      let stringAtoms = ["col-filter", "col-enabled", "col-hitcount", "col-lasthit", "type-comment", "type-filterlist", "type-whitelist", "type-elemhide", "type-invalid"];
       let boolAtoms = ["selected", "dummy", "slow", "disabled"];
 
       this.atoms = {};
@@ -721,8 +721,6 @@ var FilterView =
       list.push("type-whitelist");
     else if (filter instanceof ElemHideFilter)
       list.push("type-elemhide");
-    else if (filter instanceof ElemHideException)
-      list.push("type-elemhideexception");
     else if (filter instanceof InvalidFilter)
       list.push("type-invalid");
 
