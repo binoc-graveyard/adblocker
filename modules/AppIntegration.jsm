@@ -1159,8 +1159,6 @@ WindowWrapper.prototype =
       }
     }
 
-    this.E("abp-command-sendReport").setAttribute("disabled", !location || !Policy.isBlockableScheme(location) || location.scheme == "mailto");
-  
     this.E(prefix + "disabled").setAttribute("checked", !Prefs.enabled);
     this.E(prefix + "frameobjects").setAttribute("checked", Prefs.frameobjects);
     this.E(prefix + "slowcollapse").setAttribute("checked", !Prefs.fastcollapse);
