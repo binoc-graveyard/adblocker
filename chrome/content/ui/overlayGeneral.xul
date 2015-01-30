@@ -26,7 +26,6 @@
 
     <!-- Icon's context menu -->
     <menupopup id="abp-status-popup" context="">
-      <menuitem id="abp-status-sendReport" label="&sendReport.label;…" accesskey="&sendReport.accesskey;" key="abp-key-sendReport" command="abp-command-sendReport"/>
       <menuitem id="abp-status-opensidebar" label="&opensidebar.label;" accesskey="&opensidebar.accesskey;" key="abp-key-sidebar" command="abp-command-sidebar"/>
       <menuitem id="abp-status-closesidebar" label="&closesidebar.label;" accesskey="&closesidebar.accesskey;" key="abp-key-sidebar" command="abp-command-sidebar"/>
       <menuitem id="abp-status-filters" label="&filters.label;…" accesskey="&filters.accesskey;" key="abp-key-filters" command="abp-command-filters"/>
@@ -47,17 +46,11 @@
           <menuitem id="abp-status-showinstatusbar" label="&showinstatusbar.label;" accesskey="&showinstatusbar.accesskey;" type="checkbox" command="abp-command-toggleshowinstatusbar"/>
         </menupopup>
       </menu>
-
-      <hbox class="abp-contributebutton" id="abp-status-contributebutton" pack="center" persist="hidden">
-        <button class="abp-contributebutton-btn" label="&contribute.label;" command="abp-command-contribute" flex="1"/>
-        <toolbarbutton class="abp-contributebutton-close" command="abp-command-contribute-hide"/>
-      </hbox>
     </menupopup>
   </popupset>
   <keyset id="abp-keyset"/>
   <commandset id="abp-commandset">
     <!-- Dummy oncommand attributes are work-arounds for bug 371900 -->
-    <command id="abp-command-sendReport" oncommand="//"/>
     <command id="abp-command-filters" oncommand="//"/>
     <command id="abp-command-settings" oncommand="//"/>
     <command id="abp-command-sidebar" oncommand="//"/>
@@ -70,8 +63,6 @@
     <command id="abp-command-toggleshowintoolbar"/>
     <command id="abp-command-toggleshowinstatusbar"/>
     <command id="abp-command-enable" oncommand="//"/>
-    <command id="abp-command-contribute"/>
-    <command id="abp-command-contribute-hide"/>
   </commandset>
 
   <statusbarpanel id="abp-status" class="statusbarpanel-iconic"
