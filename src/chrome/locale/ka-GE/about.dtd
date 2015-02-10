@@ -1,0 +1,12 @@
+<!ENTITY dialog.title "Adblock Plus-ის შესახებ">
+<!ENTITY version.title "ვერსია">
+<!ENTITY author.label "ავტორი:">
+<!ENTITY translators.label "Translators:">
+<!ENTITY description "
+  Adblock Latitude allows you to decide what you want to see on the web.
+  You don't need to download adverts and banners any more; if you
+  don't want them - remove them with Adblock Latitude!
+">
+<!ENTITY contributors.label "Contributors:">
+<!ENTITY subscriptionAuthors.label "Filter subscription authors:">
+<!ENTITY homepage.label "Adblock Latitude homepage:">
