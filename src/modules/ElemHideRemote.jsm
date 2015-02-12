@@ -132,7 +132,7 @@ HitRegistrationChannel.prototype = {
 
 	open: function()
 	{
-		let data = "<bindings xmlns='http://www.mozilla.org/xbl'><binding id='dummy'/></bindings>";
+		let data = "<bindings xmlns='http://www.mozilla.org/xbl'><binding id='dummy' bindToUntrustedContent='true'/></bindings>";
 		let wnd = Utils.getRequestWindow(this);
 
 		if (wnd)
