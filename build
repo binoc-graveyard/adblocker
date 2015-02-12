@@ -14,6 +14,11 @@ if [ -d ./obj-dir ]; then
 	rm -r ./obj-dir
 fi
 
+if [ -d ./obj-dir ]; then
+	echo Previous obj-dir did not get purged. Please remove it manually.
+	exit 1
+fi
+
 mkdir obj-dir
 
 cd obj-dir
