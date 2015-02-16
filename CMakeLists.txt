@@ -14,7 +14,7 @@ set(ADDON_TARGET_APP_NAME "Pale Moon")
 set(ADDON_TARGET_APP_ID "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}")
 set(ADDON_TARGET_APP_MINVER "25.0")
 set(ADDON_TARGET_APP_MAXVER "25.*")
-set(ADDON_APMO_ID "pm-118")
+set(ADDON_APMO_ID "pm-102")
 set(ADDON_APMO_TYPE "extension")
 
 # Process Pale Moon Add-ons Site manifest.ini
