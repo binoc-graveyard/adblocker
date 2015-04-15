@@ -14,7 +14,7 @@ pref("extensions.adblocklatitude.filters_key", "Accel Shift E, Accel Shift F, Ac
 pref("extensions.adblocklatitude.enable_key", "");
 pref("extensions.adblocklatitude.flash_scrolltoitem", true);
 pref("extensions.adblocklatitude.previewimages", true);
-pref("extensions.adblocklatitude.data_directory", "adblocklatitude");
+pref("extensions.adblocklatitude.data_directory", "adblockplus");
 pref("extensions.adblocklatitude.patternsbackups", 5);
 pref("extensions.adblocklatitude.patternsbackupinterval", 24);
 pref("extensions.adblocklatitude.whitelistschemes", "about chrome file irc moz-safe-about news resource snews x-jsd addbook cid imap mailbox nntp pop data javascript moz-icon");
