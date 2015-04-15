@@ -11,7 +11,7 @@ else
 fi
 
 if [ -d ./obj-dir ]; then
-	rm -r ./obj-dir
+	rm -rf ./obj-dir
 fi
 
 if [ -d ./obj-dir ]; then

@@ -3,7 +3,7 @@
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
-  <RDF:Description about="urn:mozilla:extension:@ADDON_ID@">
+  <RDF:Description about="urn:mozilla:@ADDON_TYPE:@ADDON_ID@">
     <em:updates>
       <RDF:Seq>
         <RDF:li>
@@ -14,7 +14,7 @@
                 <em:id>@ADDON_TARGET_APP_ID@</em:id>
                 <em:minVersion>@ADDON_TARGET_APP_MINVER@</em:minVersion>
                 <em:maxVersion>@ADDON_TARGET_APP_MAXVER@</em:maxVersion>
-                <em:updateLink>https://addons.palemoon.org/media/addons/@ADDON_APMO_TYPE@/@ADDON_APMO_ID@/@ADDON_XPI_NAME@-@ADDON_VERSION@.xpi</em:updateLink>
+                <em:updateLink>https://addons.palemoon.org/phoebus/datastore/@ADDON_APMO_ID@/@ADDON_XPI_NAME@-@ADDON_VERSION@.xpi</em:updateLink>
                 <em:updateHash>sha256:@ADDON_HASH_SHA256@</em:updateHash>
               </RDF:Description>
             </em:targetApplication>
