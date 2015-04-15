@@ -43,7 +43,7 @@ let defaultModules = [
 	baseURL + "FilterListener.jsm",
 	baseURL + "ContentPolicy.jsm",
 	baseURL + "Synchronizer.jsm",
-	baseURL + "Sync.jsm"
+//	baseURL + "Sync.jsm"
 ];
 
 let loadedModules = {__proto__: null};
