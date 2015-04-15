@@ -569,7 +569,6 @@ RegExpFilter.fromText = function(text)
 	let contentType = null;
 	let matchCase = null;
 	let domains = null;
-	let siteKeys = null;
 	let thirdParty = null;
 	let collapse = null;
 	let options;
@@ -612,8 +611,6 @@ RegExpFilter.fromText = function(text)
 				collapse = true;
 			else if (option == "~COLLAPSE")
 				collapse = false;
-			else if (option == "SITEKEY" && typeof value != "undefined")
-				siteKeys = value.split(/\|/);
 		}
 	}
 
@@ -625,15 +622,13 @@ RegExpFilter.fromText = function(text)
 			contentType = RegExpFilter.prototype.contentType;
 		contentType &= ~RegExpFilter.typeMap.DOCUMENT;
 	}
-	if (!blocking && siteKeys)
-		contentType = RegExpFilter.typeMap.DOCUMENT;
 
 	try
 	{
 		if (blocking)
 			return new BlockingFilter(origText, text, contentType, matchCase, domains, thirdParty, collapse);
 		else
-			return new WhitelistFilter(origText, text, contentType, matchCase, domains, thirdParty, siteKeys);
+			return new WhitelistFilter(origText, text, contentType, matchCase, domains, thirdParty);
 	}
 	catch (e)
 	{
@@ -707,26 +702,18 @@ BlockingFilter.prototype =
  * @param {Boolean} matchCase see RegExpFilter()
  * @param {String} domains see RegExpFilter()
  * @param {Boolean} thirdParty see RegExpFilter()
- * @param {String[]} siteKeys public keys of websites that this filter should apply to
  * @constructor
  * @augments RegExpFilter
  */
-function WhitelistFilter(text, regexpSource, contentType, matchCase, domains, thirdParty, siteKeys)
+function WhitelistFilter(text, regexpSource, contentType, matchCase, domains, thirdParty)
 {
 	RegExpFilter.call(this, text, regexpSource, contentType, matchCase, domains, thirdParty);
-
-	if (siteKeys != null)
-		this.siteKeys = siteKeys;
 }
+
 WhitelistFilter.prototype =
 {
 	__proto__: RegExpFilter.prototype,
 
-	/**
-	 * List of public keys of websites that this filter should apply to
-	 * @type String[]
-	 */
-	siteKeys: null
 }
 
 /**

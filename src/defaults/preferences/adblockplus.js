@@ -23,8 +23,6 @@ pref("extensions.adblocklatitude.subscriptions_autoupdate", true);
 pref("extensions.adblocklatitude.subscriptions_listurl", "https://adblockplus.org/subscriptions2.xml");
 pref("extensions.adblocklatitude.subscriptions_fallbackurl", "https://adblockplus.org/getSubscription?version=%VERSION%&url=%SUBSCRIPTION%&downloadURL=%URL%&error=%ERROR%&channelStatus=%CHANNELSTATUS%&responseStatus=%RESPONSESTATUS%");
 pref("extensions.adblocklatitude.subscriptions_fallbackerrors", 5);
-pref("extensions.adblocklatitude.subscriptions_exceptionsurl", "");
-pref("extensions.adblocklatitude.subscriptions_exceptionscheckbox", false);
 pref("extensions.adblocklatitude.documentation_link", "https://adblockplus.org/redirect?link=%LINK%&lang=%LANG%");
 pref("extensions.adblocklatitude.savestats", true);
 pref("extensions.adblocklatitude.composer_default", 2);

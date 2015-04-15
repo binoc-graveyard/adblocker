@@ -33,7 +33,7 @@ function init()
 
 	for each (let subscription in FilterStorage.subscriptions)
 	{
-		if (subscription instanceof DownloadableSubscription && subscription.url != Prefs.subscriptions_exceptionsurl)
+		if (subscription instanceof DownloadableSubscription && subscription.url)
 		{
 			E("listName").textContent = subscription.title;
 
@@ -46,9 +46,6 @@ function init()
 			break;
 		}
 	}
-
-	if (FilterStorage.subscriptions.some(function(s) s.url == Prefs.subscriptions_exceptionsurl))
-		E("acceptableAds").hidden = false;
 }
 
 function generateLinkText(element)
