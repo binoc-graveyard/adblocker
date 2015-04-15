@@ -4,11 +4,11 @@ project (adblocklatitude)
 
 # Preprocessor Metadata
 set(ADDON_ID "adblocklatitude@addons.palemoon.org")
-set(ADDON_VERSION "3.5.0a2")
+set(ADDON_VERSION "3.5.0a3")
 set(ADDON_NAME "Adblock Latitude")
 set(ADDON_XPI_NAME "adblocklatitude")
 set(ADDON_SHORT_DESC "Acceptable ads were yesterday!")
-set(ADDON_LONG_DESC "Adblock Latitude is a direct fork of Adblock Plus made specifically for the Pale Moon browser.<br /><br />Adblock Latitude is designed to be a drop in replacement for ABP and will utilize all your exsisting settings. However, ABL is more than that. It intends to also replace Adblock Edge by removing the hard coded Acceptable Ads feature.<br /><br />Adblock Latitude can be installed over the previously available Pseudo-Static version of Adblock Plus but you will have to uninstall the Pseudo-Static of Adblock Edge as these will conflict as will the orginal versions of ABP and ABE. Likewise, if you were an ABE user you will have to setup ABL to your previous settings.")
+set(ADDON_LONG_DESC "This is the Next Generation Adblock Latitude. <br /><br /> Please disable or remove any previous versions of the Adblock Family before installing. You may want to make a backup of your filter presets via the Filter Preferences window so that you can reimport them afterward.")
 set(ADDON_AUTHOR "Pale Moon Add-ons Team")
 set(ADDON_TARGET_APP_NAME "Pale Moon")
 set(ADDON_TARGET_APP_ID "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}")
