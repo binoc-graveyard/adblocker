@@ -9,9 +9,11 @@ if ! BINOC_CMAKE_PATH="$(which cmake 2>/dev/null)" && uname | grep -i 'msys|ming
 	elif [ -f "/c/Program Files (x86)/CMake/bin/cmake.exe" ]; then
 		BINOC_CMAKE_PATH="/c/Program Files (x86)/CMake/bin/cmake.exe"
 	fi
-else
-		echo "cmake not found."
-		exit 1
+fi
+
+if [ -z "$BINOC_CMAKE_PATH" ]; then
+	echo "cmake not found."
+	exit 1
 fi
 
 if [ -d ./obj-dir ]; then
