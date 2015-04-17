@@ -24,13 +24,6 @@ configure_file(
 	@only
 )
 
-# Process Pale Moon Add-ons Site update.xml
-configure_file(
-	${CMAKE_SOURCE_DIR}/update.xml.in 
-	${CMAKE_BINARY_DIR}/dist/package/update.xml 
-	@only
-)
-
 # Copy Add-on files to dist/bin
 file(
 	COPY "${CMAKE_SOURCE_DIR}/src/"
@@ -56,7 +49,6 @@ add_custom_command (
 	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
 	OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
 	COMMAND zip -r ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
-	COMMAND sha256 ${CMAKE_BINARY_DIR}"/dist/package/"${ADDON_XPI_NAME}"-"${ADDON_VERSION}".xpi"
 	DEPENDS package-xpi
 )
 
