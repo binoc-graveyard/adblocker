@@ -56,7 +56,7 @@ add_custom_command (
 	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
 	OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
 	COMMAND zip -r ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
-	COMMAND whash -sha256 ${CMAKE_BINARY_DIR}"/dist/package/"${ADDON_XPI_NAME}"-"${ADDON_VERSION}".xpi"
+	COMMAND sha256 ${CMAKE_BINARY_DIR}"/dist/package/"${ADDON_XPI_NAME}"-"${ADDON_VERSION}".xpi"
 	DEPENDS package-xpi
 )
 
