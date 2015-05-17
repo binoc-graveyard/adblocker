@@ -1,65 +1,65 @@
 overlay   chrome://browser/content/browser.xul chrome://adblocklatitude/content/ui/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@
 
-content   adblocklatitude chrome/content/
+content   adblocklatitude content/
 
-skin      adblocklatitude classic/1.0 chrome/skin/
+skin      adblocklatitude classic/1.0 skin/
 
 style     chrome://global/content/customizeToolbar.xul chrome://adblocklatitude/skin/overlay.css
 
 content   adblocklatitude-modules modules/
 content   adblocklatitude-defaults defaults/
 
-locale    adblocklatitude en-US chrome/locale/en-US/
-#locale    adblocklatitude ar chrome/locale/ar/
-#locale    adblocklatitude bg chrome/locale/bg/
-#locale    adblocklatitude ca chrome/locale/ca/
-#locale    adblocklatitude cs chrome/locale/cs/
-#locale    adblocklatitude da chrome/locale/da/
-#locale    adblocklatitude de chrome/locale/de/
-#locale    adblocklatitude el chrome/locale/el/
-#locale    adblocklatitude en-GB chrome/locale/en-GB/
-#locale    adblocklatitude eo chrome/locale/eo/
-#locale    adblocklatitude es-AR chrome/locale/es-AR/
-#locale    adblocklatitude es-ES chrome/locale/es-ES/
-#locale    adblocklatitude es-MX chrome/locale/es-MX/
-#locale    adblocklatitude et chrome/locale/et/
-#locale    adblocklatitude fa chrome/locale/fa/
-#locale    adblocklatitude fi chrome/locale/fi/
-#locale    adblocklatitude fr chrome/locale/fr/
-#locale    adblocklatitude fy-NL chrome/locale/fy-NL/
-#locale    adblocklatitude gl chrome/locale/gl/
-#locale    adblocklatitude he chrome/locale/he/
-#locale    adblocklatitude hr chrome/locale/hr/
-#locale    adblocklatitude hsb chrome/locale/hsb/
-#locale    adblocklatitude hu chrome/locale/hu/
-#locale    adblocklatitude hy-AM chrome/locale/hy-AM/
-#locale    adblocklatitude is chrome/locale/is/
-#locale    adblocklatitude it chrome/locale/it/
-#locale    adblocklatitude ja chrome/locale/ja/
-#locale    adblocklatitude ka-GE chrome/locale/ka-GE/
-#locale    adblocklatitude kk-KZ chrome/locale/kk-KZ/
-#locale    adblocklatitude ko chrome/locale/ko/
-#locale    adblocklatitude lt chrome/locale/lt/
-#locale    adblocklatitude lv chrome/locale/lv/
-#locale    adblocklatitude mn chrome/locale/mn/
-#locale    adblocklatitude ms-MY chrome/locale/ms-MY/
-#locale    adblocklatitude nl chrome/locale/nl/
-#locale    adblocklatitude pl chrome/locale/pl/
-#locale    adblocklatitude pt-BR chrome/locale/pt-BR/
-#locale    adblocklatitude pt-PT chrome/locale/pt-PT/
-#locale    adblocklatitude ro chrome/locale/ro/
-#locale    adblocklatitude ru chrome/locale/ru/
-#locale    adblocklatitude sk chrome/locale/sk/
-#locale    adblocklatitude sl chrome/locale/sl/
-#locale    adblocklatitude sq chrome/locale/sq/
-#locale    adblocklatitude sr chrome/locale/sr/
-#locale    adblocklatitude sv-SE chrome/locale/sv-SE/
-#locale    adblocklatitude th chrome/locale/th/
-#locale    adblocklatitude tr chrome/locale/tr/
-#locale    adblocklatitude uk chrome/locale/uk/
-#locale    adblocklatitude vi chrome/locale/vi/
-#locale    adblocklatitude zh-CN chrome/locale/zh-CN/
-#locale    adblocklatitude zh-TW chrome/locale/zh-TW/
+locale    adblocklatitude en-US locale/en-US/
+#locale    adblocklatitude ar locale/ar/
+#locale    adblocklatitude bg locale/bg/
+#locale    adblocklatitude ca locale/ca/
+#locale    adblocklatitude cs locale/cs/
+#locale    adblocklatitude da locale/da/
+#locale    adblocklatitude de locale/de/
+#locale    adblocklatitude el locale/el/
+#locale    adblocklatitude en-GB locale/en-GB/
+#locale    adblocklatitude eo locale/eo/
+#locale    adblocklatitude es-AR locale/es-AR/
+#locale    adblocklatitude es-ES locale/es-ES/
+#locale    adblocklatitude es-MX locale/es-MX/
+#locale    adblocklatitude et locale/et/
+#locale    adblocklatitude fa locale/fa/
+#locale    adblocklatitude fi locale/fi/
+#locale    adblocklatitude fr locale/fr/
+#locale    adblocklatitude fy-NL locale/fy-NL/
+#locale    adblocklatitude gl locale/gl/
+#locale    adblocklatitude he locale/he/
+#locale    adblocklatitude hr locale/hr/
+#locale    adblocklatitude hsb locale/hsb/
+#locale    adblocklatitude hu locale/hu/
+#locale    adblocklatitude hy-AM locale/hy-AM/
+#locale    adblocklatitude is locale/is/
+#locale    adblocklatitude it locale/it/
+#locale    adblocklatitude ja locale/ja/
+#locale    adblocklatitude ka-GE locale/ka-GE/
+#locale    adblocklatitude kk-KZ locale/kk-KZ/
+#locale    adblocklatitude ko locale/ko/
+#locale    adblocklatitude lt locale/lt/
+#locale    adblocklatitude lv locale/lv/
+#locale    adblocklatitude mn locale/mn/
+#locale    adblocklatitude ms-MY locale/ms-MY/
+#locale    adblocklatitude nl locale/nl/
+#locale    adblocklatitude pl locale/pl/
+#locale    adblocklatitude pt-BR locale/pt-BR/
+#locale    adblocklatitude pt-PT locale/pt-PT/
+#locale    adblocklatitude ro locale/ro/
+#locale    adblocklatitude ru locale/ru/
+#locale    adblocklatitude sk locale/sk/
+#locale    adblocklatitude sl locale/sl/
+#locale    adblocklatitude sq locale/sq/
+#locale    adblocklatitude sr locale/sr/
+#locale    adblocklatitude sv-SE locale/sv-SE/
+#locale    adblocklatitude th locale/th/
+#locale    adblocklatitude tr locale/tr/
+#locale    adblocklatitude uk locale/uk/
+#locale    adblocklatitude vi locale/vi/
+#locale    adblocklatitude zh-CN locale/zh-CN/
+#locale    adblocklatitude zh-TW locale/zh-TW/
 
 
 # Component registration
