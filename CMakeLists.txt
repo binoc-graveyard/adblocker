@@ -44,11 +44,11 @@ configure_file(
 	@only
 )
 
-# Zip up the dist/bin contents into an XPI file and hash it to the console
+# Zip up the dist/bin contents into an XPI file
 add_custom_command (
 	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
 	OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
-	COMMAND zip -r ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
+	COMMAND zip -r9XD ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
 	DEPENDS package-xpi
 )
 
