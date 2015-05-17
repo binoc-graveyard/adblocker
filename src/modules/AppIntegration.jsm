@@ -30,7 +30,7 @@ Cu.import(baseURL + "FilterClasses.jsm");
 Cu.import(baseURL + "SubscriptionClasses.jsm");
 Cu.import(baseURL + "RequestNotifier.jsm");
 Cu.import(baseURL + "Synchronizer.jsm");
-Cu.import(baseURL + "Sync.jsm");
+/* Cu.import(baseURL + "Sync.jsm"); */
 
 /**
  * Wrappers for tracked application windows.
