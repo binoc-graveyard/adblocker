@@ -15,7 +15,6 @@
     <em:creator>@ADDON_AUTHOR@</em:creator>
     <em:homepageURL>@ADDON_URL@</em:homepageURL>
     <em:type>2</em:type>
-    <em:aboutURL>chrome://adblocklatitude/content/ui/about.xul</em:aboutURL>
     <em:targetApplication>
       <Description>
         <!-- @ADDON_TARGET_APP_NAME@ -->
