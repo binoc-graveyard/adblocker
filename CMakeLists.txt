@@ -4,7 +4,7 @@ project (adblocklatitude)
 
 # Preprocessor Metadata
 set(ADDON_ID "adblocklatitude@addons.palemoon.org")
-set(ADDON_VERSION "3.5.0b1")
+set(ADDON_VERSION "3.5.0b2")
 set(ADDON_NAME "Adblock Latitude")
 set(ADDON_XPI_NAME "adblocklatitude")
 set(ADDON_SHORT_DESC "Acceptable ads were yesterday!")
@@ -13,7 +13,7 @@ set(ADDON_AUTHOR "Pale Moon Add-ons Team")
 set(ADDON_TARGET_APP_NAME "Pale Moon")
 set(ADDON_TARGET_APP_ID "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}")
 set(ADDON_TARGET_APP_MINVER "25.0")
-set(ADDON_TARGET_APP_MAXVER "25.*")
+set(ADDON_TARGET_APP_MAXVER "26.*")
 set(ADDON_APMO_ID "pm-102")
 set(ADDON_APMO_TYPE "extension")
 
