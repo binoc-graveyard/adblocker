@@ -4,7 +4,8 @@
 
 <!ENTITY menuitem.label         "Adblock Latitude Preferences">
 <!ENTITY menuitem.accesskey     "b">
-<!ENTITY toolbarbutton.label    "Adblock Latitude">
+<!ENTITY toolbarbutton.label    "ABL">
+<!ENTITY toolsmenu.label        "Adblock Latitude">
 
 <!ENTITY context.image.label    "Adblock Latitude: Block image">
 <!ENTITY context.object.label   "Adblock Latitude: Block object">
