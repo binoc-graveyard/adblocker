@@ -10,57 +10,6 @@ content   adblocklatitude-modules modules/
 content   adblocklatitude-defaults defaults/
 
 locale    adblocklatitude en-US locale/en-US/
-#locale    adblocklatitude ar locale/ar/
-#locale    adblocklatitude bg locale/bg/
-#locale    adblocklatitude ca locale/ca/
-#locale    adblocklatitude cs locale/cs/
-#locale    adblocklatitude da locale/da/
-#locale    adblocklatitude de locale/de/
-#locale    adblocklatitude el locale/el/
-#locale    adblocklatitude en-GB locale/en-GB/
-#locale    adblocklatitude eo locale/eo/
-#locale    adblocklatitude es-AR locale/es-AR/
-#locale    adblocklatitude es-ES locale/es-ES/
-#locale    adblocklatitude es-MX locale/es-MX/
-#locale    adblocklatitude et locale/et/
-#locale    adblocklatitude fa locale/fa/
-#locale    adblocklatitude fi locale/fi/
-#locale    adblocklatitude fr locale/fr/
-#locale    adblocklatitude fy-NL locale/fy-NL/
-#locale    adblocklatitude gl locale/gl/
-#locale    adblocklatitude he locale/he/
-#locale    adblocklatitude hr locale/hr/
-#locale    adblocklatitude hsb locale/hsb/
-#locale    adblocklatitude hu locale/hu/
-#locale    adblocklatitude hy-AM locale/hy-AM/
-#locale    adblocklatitude is locale/is/
-#locale    adblocklatitude it locale/it/
-#locale    adblocklatitude ja locale/ja/
-#locale    adblocklatitude ka-GE locale/ka-GE/
-#locale    adblocklatitude kk-KZ locale/kk-KZ/
-#locale    adblocklatitude ko locale/ko/
-#locale    adblocklatitude lt locale/lt/
-#locale    adblocklatitude lv locale/lv/
-#locale    adblocklatitude mn locale/mn/
-#locale    adblocklatitude ms-MY locale/ms-MY/
-#locale    adblocklatitude nl locale/nl/
-#locale    adblocklatitude pl locale/pl/
-#locale    adblocklatitude pt-BR locale/pt-BR/
-#locale    adblocklatitude pt-PT locale/pt-PT/
-#locale    adblocklatitude ro locale/ro/
-#locale    adblocklatitude ru locale/ru/
-#locale    adblocklatitude sk locale/sk/
-#locale    adblocklatitude sl locale/sl/
-#locale    adblocklatitude sq locale/sq/
-#locale    adblocklatitude sr locale/sr/
-#locale    adblocklatitude sv-SE locale/sv-SE/
-#locale    adblocklatitude th locale/th/
-#locale    adblocklatitude tr locale/tr/
-#locale    adblocklatitude uk locale/uk/
-#locale    adblocklatitude vi locale/vi/
-#locale    adblocklatitude zh-CN locale/zh-CN/
-#locale    adblocklatitude zh-TW locale/zh-TW/
-
 
 # Component registration
 component {d32a3c00-4ed3-11de-8a39-0800200c9a66} components/Initializer.js
