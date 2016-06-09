@@ -1,52 +1,39 @@
 # CMake Basics
-cmake_minimum_required (VERSION 2.8.11)
-project (adblocklatitude)
+cmake_minimum_required (VERSION 3.5)
+project (adblocklatitude NONE)
 
-# Preprocessor Metadata
-set(ADDON_ID "adblocklatitude@addons.palemoon.org")
-set(ADDON_VERSION "3.5.0b2")
-set(ADDON_NAME "Adblock Latitude")
-set(ADDON_XPI_NAME "adblocklatitude")
-set(ADDON_SHORT_DESC "Acceptable ads were yesterday!")
-set(ADDON_LONG_DESC "This is the Next Generation Adblock Latitude. <br /><br /> Please disable or remove any previous versions of the Adblock Family before installing. You may want to make a backup of your filter presets via the Filter Preferences window so that you can reimport them if something goes wrong.")
-set(ADDON_AUTHOR "Pale Moon Add-ons Team")
-set(ADDON_TARGET_APP_NAME "Pale Moon")
-set(ADDON_TARGET_APP_ID "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}")
-set(ADDON_TARGET_APP_MINVER "25.0")
-set(ADDON_TARGET_APP_MAXVER "26.*")
-set(ADDON_APMO_ID "pm-102")
-set(ADDON_APMO_TYPE "extension")
+include(${CMAKE_CURRENT_SOURCE_DIR}/config/metadata.cmake)
 
 # Process Pale Moon Add-ons Site manifest.ini
 configure_file(
-	${CMAKE_SOURCE_DIR}/manifest.ini.in 
-	${CMAKE_BINARY_DIR}/dist/package/manifest.ini 
+	${CMAKE_CURRENT_SOURCE_DIR}/manifest.ini.in 
+	${CMAKE_CURRENT_BINARY_DIR}/dist/package/manifest.ini 
 	@only
-)
-
-# Copy Add-on files to dist/bin
-file(
-	COPY "${CMAKE_SOURCE_DIR}/src/"
-	DESTINATION "${CMAKE_BINARY_DIR}/dist/bin/"
 )
 
 # Process Add-on chrome.manifest file
 configure_file(
-	${CMAKE_SOURCE_DIR}/chrome.manifest.in 
-	${CMAKE_BINARY_DIR}/dist/bin/chrome.manifest 
+	${CMAKE_CURRENT_SOURCE_DIR}/chrome.manifest.in 
+	${CMAKE_CURRENT_BINARY_DIR}/dist/bin/chrome.manifest 
 	@only
 )
 
 # Process Add-on install.rdf file
 configure_file(
-	${CMAKE_SOURCE_DIR}/install.rdf.in 
-	${CMAKE_BINARY_DIR}/dist/bin/install.rdf 
+	${CMAKE_CURRENT_SOURCE_DIR}/install.rdf.in 
+	${CMAKE_CURRENT_BINARY_DIR}/dist/bin/install.rdf 
 	@only
+)
+
+# Copy Add-on files to dist/bin
+file(
+	COPY "${CMAKE_CURRENT_SOURCE_DIR}/src/"
+	DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/dist/bin/"
 )
 
 # Zip up the dist/bin contents into an XPI file
 add_custom_command (
-	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
+	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin/
 	OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
 	COMMAND zip -r9XD ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
 	DEPENDS package-xpi
