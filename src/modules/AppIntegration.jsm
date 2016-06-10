@@ -163,12 +163,13 @@ var AppIntegration =
 	 * Toggles the pref for the Adblock Plus sync engine.
 	 * @return {Boolean} new state of the sync engine
 	 */
-	toggleSync: function()
+	/** toggleSync: function()
 	{
 		let syncEngine = Sync.getEngine();
 		syncEngine.enabled = !syncEngine.enabled;
 		return syncEngine.enabled;
 	},
+    */
 	
 	/**
 	 * Adds or removes the Adblock Plus toolbar icon.
@@ -1176,9 +1177,9 @@ WindowWrapper.prototype =
 		this.E(prefix + "showintoolbar").setAttribute("checked", this.isToolbarIconVisible());
 		this.E(prefix + "showinstatusbar").setAttribute("checked", Prefs.showinstatusbar);
 	
-		let syncEngine = Sync.getEngine();
+		/** let syncEngine = Sync.getEngine(); 
 		this.E(prefix + "sync").hidden = !syncEngine;
-		this.E(prefix + "sync").setAttribute("checked", syncEngine && syncEngine.enabled);
+		this.E(prefix + "sync").setAttribute("checked", syncEngine && syncEngine.enabled); */
 
 		let defAction = (!this.window.document.popupNode || this.window.document.popupNode.id == "abp-toolbarbutton" ?
 										 Prefs.defaulttoolbaraction :
