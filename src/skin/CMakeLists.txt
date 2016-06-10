@@ -15,7 +15,7 @@ set(CSS_FILES
 set(PNG_FILES
     ${mk_srcdir}/abp-icon-big.png
     ${mk_srcdir}/abp-status.png
-    ${mk_srcdir}/abp.status-16.png
+    ${mk_srcdir}/abp-status-16.png
     ${mk_srcdir}/checkbox.png
     ${mk_srcdir}/close.png
     ${mk_srcdir}/item-state.png
@@ -23,9 +23,8 @@ set(PNG_FILES
 )
 
 set(SOURCE_FILES
-    ${JS_FILES}
-    ${XML_FILES}
-    ${XUL_FILES}
+    ${CSS_FILES}
+    ${PNG_FILES}
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")
