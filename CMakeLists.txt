@@ -54,17 +54,21 @@ configure_file(
     ${CMAKE_BINARY_DIR}/dist/bin/install.rdf 
 )
 
-# Zip up the dist/bin contents into an XPI file
-add_custom_command (
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
-    OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
-    COMMAND zip -r9XD ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
-    DEPENDS package-xpi
-)
+if(BINOC_BUILD)
+    build_func_package(${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi)
+else()
+    # Zip up the dist/bin contents into an XPI file
+    add_custom_command (
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/dist/bin/
+        OUTPUT ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
+        COMMAND zip -r9XD ../package/${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi ./
+        DEPENDS package-xpi
+    )
 
-add_custom_target(
-    package-xpi
-    ALL
-    DEPENDS ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
-)
+    add_custom_target(
+        package-xpi
+        ALL
+        DEPENDS ${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi
+    )
+endif()
 
