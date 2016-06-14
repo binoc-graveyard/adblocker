@@ -1,15 +1,15 @@
-overlay   chrome://browser/content/browser.xul chrome://adblocklatitude/content/ui/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@
+overlay   chrome://browser/content/browser.xul chrome://@ADDON_CHROME_NAME@/content/ui/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@
 
-content   adblocklatitude content/
+content   @ADDON_CHROME_NAME@ content/
 
-skin      adblocklatitude classic/1.0 skin/
+skin      @ADDON_CHROME_NAME@ classic/1.0 skin/
 
-style     chrome://global/content/customizeToolbar.xul chrome://adblocklatitude/skin/overlay.css
+style     chrome://global/content/customizeToolbar.xul chrome://@ADDON_CHROME_NAME@/skin/overlay.css
 
-content   adblocklatitude-modules modules/
-content   adblocklatitude-defaults defaults/
+content   @ADDON_CHROME_NAME@-modules modules/
+content   @ADDON_CHROME_NAME@-defaults defaults/
 
-locale    adblocklatitude en-US locale/en-US/
+locale    @ADDON_CHROME_NAME@ en-US locale/en-US/
 
 # Component registration
 component {d32a3c00-4ed3-11de-8a39-0800200c9a66} components/Initializer.js
