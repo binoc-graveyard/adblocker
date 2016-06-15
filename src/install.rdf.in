@@ -13,7 +13,7 @@
     <em:name>@ADDON_NAME@</em:name>
     <em:description>@ADDON_SHORT_DESC@</em:description>
     <em:creator>@ADDON_AUTHOR@</em:creator>
-#if 0
+#ifdef ADDON_URL
     <em:homepageURL>@ADDON_URL@</em:homepageURL>
 #endif
     <em:type>2</em:type>
