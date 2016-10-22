@@ -1,7 +1,7 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(SOURCE_FILES
+set(SRC_JSM_FILES
     ${mk_srcdir}/AppIntegration.jsm
     ${mk_srcdir}/AppIntegrationFennec.jsm
     ${mk_srcdir}/AppIntegrationFennecNative.jsm
@@ -25,6 +25,10 @@ set(SOURCE_FILES
     ${mk_srcdir}/Synchronizer.jsm
     ${mk_srcdir}/TimeLine.jsm
     ${mk_srcdir}/Utils.jsm
+)
+
+set(SOURCE_FILES
+    ${SRC_JSM_FILES}
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")

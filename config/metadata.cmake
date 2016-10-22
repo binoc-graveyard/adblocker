@@ -14,7 +14,8 @@ set(ADDON_TARGET_APP_MAXVER "27.*")
 set(ADDON_APMO_ID "pm-102")
 set(ADDON_APMO_TYPE "extension")
 
-set(ppDefines
+set(varAddonDefines
+    ${varBuildDefines}
     -DADDON_ID="${ADDON_ID}"
     -DADDON_VERSION="${ADDON_VERSION}"
     -DADDON_NAME="${ADDON_NAME}"

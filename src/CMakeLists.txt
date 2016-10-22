@@ -8,23 +8,18 @@ set(SOURCE_FILES
 
 COPY_TO_DIST("${SOURCE_FILES}")
 
-# Preprocess files
+set(SOURCE_PP_FILES
+    chrome.manifest.in
+    install.rdf.in
+)
+
+COPY_TO_DIST("${SOURCE_FILES}")
+COMMON_PREPROCESS("${SOURCE_PP_FILES}")
+
 build_func_preprocess(
     manifest.ini.in
     ${FINAL_TARGET}/../package/manifest.ini
-    ${ppDefines}
-)
-
-build_func_preprocess(
-    chrome.manifest.in
-    ${FINAL_TARGET}chrome.manifest
-    ${ppDefines}
-)
-
-build_func_preprocess(
-    install.rdf.in
-    ${FINAL_TARGET}install.rdf
-    ${ppDefines}
+    ${varAddonDefines}
 )
 
 add_subdirectory(components)

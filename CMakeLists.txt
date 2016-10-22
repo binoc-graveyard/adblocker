@@ -25,9 +25,20 @@ if((BINOC_BUILD) AND (NOT CMAKE_BINARY_DIR MATCHES CMAKE_SOURCE_DIR))
 
     FIND_FINAL_TARGET()
 
+    function(COMMON_PREPROCESS _FILE_LIST)
+        foreach(_FILE ${_FILE_LIST})
+            string(REGEX REPLACE "(\.in)$" "" _FILE_NAME ${_FILE})
+            build_func_preprocess(
+                ${_FILE}
+                ${FINAL_TARGET}/${_FILE_NAME}
+                ${varAddonDefines}
+            )
+        endforeach()
+    endfunction(COMMON_PREPROCESS)
+
     # Add subdirectories
     add_subdirectory(src)
-
+    
     build_func_package(${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi)
 else()
     cmake_minimum_required (VERSION 2.8.11)

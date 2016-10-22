@@ -1,8 +1,13 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(SOURCE_FILES
+set(SRC_JS_FILES
     ${mk_srcdir}/Initializer.js
 )
 
-COPY_TO_DIST(${SOURCE_FILES})
+set(SOURCE_FILES
+    ${SRC_JS_FILES}
+)
+
+COPY_TO_DIST("${SOURCE_FILES}")
+

@@ -1,16 +1,16 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(JS_FILES
+set(SRC_JS_FILES
     ${mk_srcdir}/about.js
     ${mk_srcdir}/composer.js
-    ${mk_srcdir}/filters.js
     ${mk_srcdir}/filters-backup.js
     ${mk_srcdir}/filters-filteractions.js
     ${mk_srcdir}/filters-filterview.js
     ${mk_srcdir}/filters-search.js
     ${mk_srcdir}/filters-subscriptionactions.js
     ${mk_srcdir}/filters-subscriptionview.js
+    ${mk_srcdir}/filters.js
     ${mk_srcdir}/firstRun.js
     ${mk_srcdir}/flasher.js
     ${mk_srcdir}/overlay.js
@@ -20,14 +20,15 @@ set(JS_FILES
     ${mk_srcdir}/utils.js
 )
 
-set(XML_FILES
+set(SRC_XML_FILES
     ${mk_srcdir}/progressBar.xml
     ${mk_srcdir}/subscriptions.xml
 )
 
-set(XUL_FILES
+set(SRC_XUL_FILES
     ${mk_srcdir}/about.xul
     ${mk_srcdir}/composer.xul
+    ${mk_srcdir}/fennecNativeOverlay.xul
     ${mk_srcdir}/fennecOverlay.xul
     ${mk_srcdir}/fennecSettings.xul
     ${mk_srcdir}/fennecSubscription.xul
@@ -45,12 +46,11 @@ set(XUL_FILES
     ${mk_srcdir}/thunderbirdOverlay.xul
 )
 
-
-
 set(SOURCE_FILES
-    ${JS_FILES}
-    ${XML_FILES}
-    ${XUL_FILES}
+    ${SRC_JS_FILES}
+    ${SRC_XML_FILES}
+    ${SRC_XUL_FILES}
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")
+

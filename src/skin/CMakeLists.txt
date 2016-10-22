@@ -1,7 +1,7 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(CSS_FILES
+set(SRC_CSS_FILES
     ${mk_srcdir}/about.css
     ${mk_srcdir}/composer.css
     ${mk_srcdir}/filters.css
@@ -12,10 +12,10 @@ set(CSS_FILES
     ${mk_srcdir}/subscriptionSelection.css
 )
 
-set(PNG_FILES
+set(SRC_PNG_FILES
     ${mk_srcdir}/abp-icon-big.png
-    ${mk_srcdir}/abp-status.png
     ${mk_srcdir}/abp-status-16.png
+    ${mk_srcdir}/abp-status.png
     ${mk_srcdir}/checkbox.png
     ${mk_srcdir}/close.png
     ${mk_srcdir}/item-state.png
@@ -23,8 +23,9 @@ set(PNG_FILES
 )
 
 set(SOURCE_FILES
-    ${CSS_FILES}
-    ${PNG_FILES}
+    ${SRC_CSS_FILES}
+    ${SRC_PNG_FILES}
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")
+
