@@ -30,6 +30,6 @@ build_func_preprocess(
 add_subdirectory(components)
 add_subdirectory(content)
 add_subdirectory(defaults)
-add_subdirectory(locale)
+add_subdirectory(locale/en-US)
 add_subdirectory(modules)
 add_subdirectory(skin)
