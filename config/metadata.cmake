@@ -1,6 +1,6 @@
 # Preprocessor Metadata
 set(ADDON_ID "adblocklatitude@addons.palemoon.org")
-set(ADDON_VERSION "3.5.0b4")
+set(ADDON_VERSION "3.5.0")
 set(ADDON_NAME "Adblock Latitude")
 set(ADDON_XPI_NAME "adblocklatitude")
 set(ADDON_SHORT_DESC "Acceptable ads were yesterday!")
