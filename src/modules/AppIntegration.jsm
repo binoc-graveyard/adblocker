@@ -1614,7 +1614,7 @@ function addSubscription()
 {
 	// Add "acceptable ads" subscription for new users and user updating from old ABP versions.
 	// Don't add it for users of privacy subscriptions (use a hardcoded list for now).
-	let addAcceptable = (Utils.versionComparator.compare(Prefs.lastVersion, "4.0") < 0);
+	let addAcceptable = false;
 	let privacySubscriptions = {
 		"https://easylist-downloads.adblockplus.org/easyprivacy+easylist.txt": true,
 		"https://easylist-downloads.adblockplus.org/easyprivacy.txt": true,
@@ -1624,8 +1624,6 @@ function addSubscription()
 		"https://hg01.codeplex.com/fanboyadblock/raw-file/tip/fanboy-adblocklist-stats.txt": true,
 		"https://adversity.googlecode.com/hg/Adversity-Tracking.txt": true
 	};
-	if (FilterStorage.subscriptions.some(function(subscription) subscription.url == Prefs.subscriptions_exceptionsurl || subscription.url in privacySubscriptions))
-		addAcceptable = false;
 
 	// Don't add subscription if the user has a subscription already
 	let addSubscription = true;
@@ -1638,21 +1636,6 @@ function addSubscription()
 		let hasFilters = FilterStorage.subscriptions.some(function(subscription) subscription.filters.length);
 		if (hasFilters && Utils.versionComparator.compare(Prefs.lastVersion, "0.0") > 0)
 			addSubscription = false;
-	}
-
-	// Add "acceptable ads" subscription
-	if (addAcceptable)
-	{
-		let subscription = Subscription.fromURL(Prefs.subscriptions_exceptionsurl);
-		if (subscription)
-		{
-			subscription.title = "Allow non-intrusive advertising";
-			FilterStorage.addSubscription(subscription);
-			if (subscription instanceof DownloadableSubscription && !subscription.lastDownload)
-				Synchronizer.execute(subscription);
-		}
-		else
-			addAcceptable = false;
 	}
 
 	if (!addSubscription && !addAcceptable)
