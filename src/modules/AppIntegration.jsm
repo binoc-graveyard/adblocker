@@ -1614,7 +1614,7 @@ function addSubscription()
 {
 	// Add "acceptable ads" subscription for new users and user updating from old ABP versions.
 	// Don't add it for users of privacy subscriptions (use a hardcoded list for now).
-	let addAcceptable = (Utils.versionComparator.compare(Prefs.lastVersion, "2.0b.3269") < 0);
+	let addAcceptable = (Utils.versionComparator.compare(Prefs.lastVersion, "4.0") < 0);
 	let privacySubscriptions = {
 		"https://easylist-downloads.adblockplus.org/easyprivacy+easylist.txt": true,
 		"https://easylist-downloads.adblockplus.org/easyprivacy.txt": true,
