@@ -40,7 +40,7 @@ var Utils =
 	 */
 	get addonVersion()
 	{
-		let version = "3.5.0a2";
+		let version = "@ADDON_VERSION@";
 		return (version[0] == "{" ? "99.9" : version);
 	},
 

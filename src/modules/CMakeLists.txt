@@ -24,12 +24,16 @@ set(SRC_JSM_FILES
     ${mk_srcdir}/Sync.jsm
     ${mk_srcdir}/Synchronizer.jsm
     ${mk_srcdir}/TimeLine.jsm
-    ${mk_srcdir}/Utils.jsm
 )
 
 set(SOURCE_FILES
     ${SRC_JSM_FILES}
 )
 
+set(SOURCE_PP_FILES
+    Utils.jsm
+)
+
 COPY_TO_DIST("${SOURCE_FILES}")
+COMMON_PREPROCESS("${SOURCE_PP_FILES}")
 
