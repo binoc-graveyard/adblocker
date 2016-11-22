@@ -6,8 +6,6 @@ set(SOURCE_FILES
     ${mk_srcdir}/icon64.png
 )
 
-COPY_TO_DIST("${SOURCE_FILES}")
-
 set(SOURCE_PP_FILES
     chrome.manifest.in
     install.rdf.in
