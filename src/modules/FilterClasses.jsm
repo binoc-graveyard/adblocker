@@ -15,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblocklatitude-modules/content/";
+let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "FilterNotifier.jsm");
 

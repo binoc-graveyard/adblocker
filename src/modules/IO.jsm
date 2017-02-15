@@ -20,7 +20,7 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/FileUtils.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 
-let baseURL = "chrome://adblocklatitude-modules/content/";
+let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 Cu.import(baseURL + "TimeLine.jsm");
 
 var IO =

@@ -124,7 +124,7 @@ function setExtensionData(name, version, homepage, authors, contributors, transl
 	E("translators").textContent = translators.join(", ");
 
 	let request = new XMLHttpRequest();
-	request.open("GET", "chrome://adblocklatitude/content/ui/subscriptions.xml");
+	request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/ui/subscriptions.xml");
 	request.addEventListener("load", setSubscriptionAuthors, false);
 	request.send(null);
 }

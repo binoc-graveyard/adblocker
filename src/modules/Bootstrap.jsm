@@ -18,7 +18,7 @@ const Cu = Components.utils;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 
-let baseURL = "chrome://adblocklatitude-modules/content/";
+let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "TimeLine.jsm");
 

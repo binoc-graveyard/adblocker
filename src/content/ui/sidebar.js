@@ -436,7 +436,7 @@ function doBlock() {
 	if (filter && filter instanceof WhitelistFilter)
 		return;
 
-	openDialog("chrome://adblocklatitude/content/ui/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", item.nodes, item.orig);
+	openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", item.nodes, item.orig);
 }
 
 function editFilter()

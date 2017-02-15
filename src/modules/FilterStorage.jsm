@@ -15,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblocklatitude-modules/content/";
+let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "IO.jsm");
 Cu.import(baseURL + "Prefs.jsm");
@@ -73,7 +73,7 @@ var FilterStorage =
 		}
 
 		if (!file)
-			Cu.reportError("Adblock Plus: Failed to resolve filter file location from extensions.adblocklatitude.patternsfile preference");
+			Cu.reportError("Adblock Plus: Failed to resolve filter file location from extensions.@ADDON_CHROME_NAME@.patternsfile preference");
 
 		this.__defineGetter__("sourceFile", function() file);
 		return this.sourceFile;
@@ -360,7 +360,7 @@ var FilterStorage =
 			explicitFile = false;
 
 			if (!sourceFile || !sourceFile.exists())
-				sourceFile = Utils.makeURI("chrome://adblocklatitude-defaults/content/patterns.ini");
+				sourceFile = Utils.makeURI("chrome://@ADDON_CHROME_NAME@-defaults/content/patterns.ini");
 		}
 
 		let readFile = function(sourceFile, backupIndex)

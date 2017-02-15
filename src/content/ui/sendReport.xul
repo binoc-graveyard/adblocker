@@ -6,12 +6,12 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://global/skin/tree.css" type="text/css"?>
-<?xml-stylesheet href="chrome://adblocklatitude/skin/sendReport.css" type="text/css"?>
+<?xml-stylesheet href="chrome://@ADDON_CHROME_NAME@/skin/sendReport.css" type="text/css"?>
 
 <!DOCTYPE dialog [
-<!ENTITY % reporterDTD SYSTEM "chrome://adblocklatitude/locale/sendReport.dtd">
+<!ENTITY % reporterDTD SYSTEM "chrome://@ADDON_CHROME_NAME@/locale/sendReport.dtd">
 %reporterDTD;
-<!ENTITY % filtersDTD SYSTEM "chrome://adblocklatitude/locale/filters.dtd">
+<!ENTITY % filtersDTD SYSTEM "chrome://@ADDON_CHROME_NAME@/locale/filters.dtd">
 %filtersDTD;
 ]>
 

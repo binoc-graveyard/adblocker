@@ -15,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://adblocklatitude-modules/content/";
+let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "Prefs.jsm");
 Cu.import(baseURL + "ContentPolicy.jsm");
@@ -173,11 +173,11 @@ var AppIntegrationFennec =
 			// Multi-process setup - we need to inject our content script into all tabs
 			let browsers = wrapper.window.Browser.browsers;
 			for (let i = 0; i < browsers.length; i++)
-				browsers[i].messageManager.loadFrameScript("chrome://adblocklatitude/content/fennecContent.js", true);
+				browsers[i].messageManager.loadFrameScript("chrome://@ADDON_CHROME_NAME@/content/fennecContent.js", true);
 			wrapper.E("tabs").addEventListener("TabOpen", function(event)
 			{
 				let tab = wrapper.window.Browser.getTabFromChrome(event.originalTarget);
-				tab.browser.messageManager.loadFrameScript("chrome://adblocklatitude/content/fennecContent.js", true);
+				tab.browser.messageManager.loadFrameScript("chrome://@ADDON_CHROME_NAME@/content/fennecContent.js", true);
 			}, false);
 
 			// Get notified about abp: link clicks for this window
@@ -212,7 +212,7 @@ var AppIntegrationFennec =
 
 	openFennecSubscriptionDialog: function(/**WindowWrapper*/ wrapper, /**String*/ url, /**String*/ title)
 	{
-		wrapper.window.importDialog(null, "chrome://adblocklatitude/content/ui/fennecSubscription.xul");
+		wrapper.window.importDialog(null, "chrome://@ADDON_CHROME_NAME@/content/ui/fennecSubscription.xul");
 	
 		// Copied from Fennec's PromptService.js
 		// add a width style to prevent a element to grow larger 
@@ -264,19 +264,19 @@ function onCreateOptions(wrapper, event)
 	if (event.originalTarget.getAttribute("addonID") != "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}")
 		return;
 
-	wrapper.E("adblocklatitude-subscription-list").addEventListener("command", function(event)
+	wrapper.E("@ADDON_CHROME_NAME@-subscription-list").addEventListener("command", function(event)
 	{
 		let menu = event.target;
 		if (menu.value)
 			setSubscription(menu.value, menu.label);
 	}, false);
 
-	wrapper.E("adblocklatitude-acceptableAds").addEventListener("command", function(event)
+	wrapper.E("@ADDON_CHROME_NAME@-acceptableAds").addEventListener("command", function(event)
 	{
 		allowAcceptableAds(event.target.value);
 	}, false);
 
-	let syncSetting = wrapper.E("adblocklatitude-sync");
+	let syncSetting = wrapper.E("@ADDON_CHROME_NAME@-sync");
 	let syncEngine = Sync.getEngine();
 	syncSetting.hidden = !syncEngine;
 	syncSetting.value = syncEngine && syncEngine.enabled;
@@ -299,7 +299,7 @@ function onCreateOptions(wrapper, event)
 function updateSubscriptionList(wrapper)
 {
 	let hasAcceptableAds = FilterStorage.subscriptions.some(function(subscription) subscription instanceof DownloadableSubscription && subscription.url == Prefs.subscriptions_exceptionsurl);
-	wrapper.E("adblocklatitude-acceptableAds").value = hasAcceptableAds;
+	wrapper.E("@ADDON_CHROME_NAME@-acceptableAds").value = hasAcceptableAds;
 
 	let currentSubscription = FilterStorage.subscriptions.filter(
 		function(subscription) subscription instanceof DownloadableSubscription && subscription.url != Prefs.subscriptions_exceptionsurl
@@ -307,12 +307,12 @@ function updateSubscriptionList(wrapper)
 	currentSubscription = (currentSubscription.length ? currentSubscription[0] : null);
 	
 	let xhr = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-	xhr.open("GET", "chrome://adblocklatitude/content/ui/subscriptions.xml", false);
+	xhr.open("GET", "chrome://@ADDON_CHROME_NAME@/content/ui/subscriptions.xml", false);
 	xhr.send(null);
 	if (!xhr.responseXML)
 		return;
 
-	let menu = wrapper.E("adblocklatitude-subscription-list");
+	let menu = wrapper.E("@ADDON_CHROME_NAME@-subscription-list");
 	menu.removeAllItems();
 
 	let subscriptions = xhr.responseXML.documentElement.getElementsByTagName("subscription");

@@ -32,7 +32,7 @@ var Utils =
 	 */
 	get addonID()
 	{
-		return "adblocklatitude@addons.palemoon.org";
+		return "@ADDON_CHROME_NAME@@addons.palemoon.org";
 	},
 
 	/**
@@ -82,7 +82,7 @@ var Utils =
 		let locale = "en-US";
 		try
 		{
-			locale = Utils.chromeRegistry.getSelectedLocale("adblocklatitude");
+			locale = Utils.chromeRegistry.getSelectedLocale("@ADDON_CHROME_NAME@");
 		}
 		catch (e)
 		{
@@ -110,7 +110,7 @@ var Utils =
 	 */
 	getString: function(name)
 	{
-		let stringBundle = Services.strings.createBundle("chrome://adblocklatitude/locale/global.properties");
+		let stringBundle = Services.strings.createBundle("chrome://@ADDON_CHROME_NAME@/locale/global.properties");
 		Utils.getString = function(name)
 		{
 			return stringBundle.GetStringFromName(name);
@@ -302,7 +302,7 @@ var Utils =
 		}
 		else
 		{
-			Utils.windowWatcher.openWindow(null, "chrome://adblocklatitude/content/ui/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
+			Utils.windowWatcher.openWindow(null, "chrome://@ADDON_CHROME_NAME@/content/ui/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
 		}
 	},
 
@@ -352,7 +352,7 @@ var Utils =
 	 */
 	loadDocLink: function(/**String*/ linkID)
 	{
-		let baseURL = "chrome://adblocklatitude-modules/content/";
+		let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
 		Cu.import(baseURL + "Prefs.jsm");
 
 		let link = Prefs.documentation_link.replace(/%LINK%/g, linkID).replace(/%LANG%/g, Utils.appLocale);
