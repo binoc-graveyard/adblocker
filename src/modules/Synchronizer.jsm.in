@@ -102,7 +102,7 @@ var Synchronizer =
 		let hadTemporaryRedirect = false;
 		subscription.nextURL = null;
 
-		let curVersion = 3.5.0;
+		let curVersion = "3.5.0";
 		let loadFrom = newURL;
 		let isBaseLocation = true;
 		if (!loadFrom)
@@ -493,7 +493,7 @@ function readFilters(subscription, text, errorCallback)
 	if (minVersion)
 	{
 		subscription.requiredVersion = minVersion;
-		if (Utils.versionComparator.compare(minVersion, 3.5.0) > 0)
+		if (Utils.versionComparator.compare(minVersion, "3.5.0") > 0)
 			subscription.upgradeRequired = true;
 	}
 
@@ -552,7 +552,7 @@ function setError(subscription, error, channelStatus, responseStatus, downloadUR
 			subscription.errors = 0;
 
 			let fallbackURL = Prefs.subscriptions_fallbackurl;
-			fallbackURL = fallbackURL.replace(/%VERSION%/g, encodeURIComponent(3.5.0));
+			fallbackURL = fallbackURL.replace(/%VERSION%/g, encodeURIComponent("3.5.0"));
 			fallbackURL = fallbackURL.replace(/%SUBSCRIPTION%/g, encodeURIComponent(subscription.url));
 			fallbackURL = fallbackURL.replace(/%URL%/g, encodeURIComponent(downloadURL));
 			fallbackURL = fallbackURL.replace(/%ERROR%/g, encodeURIComponent(error));
