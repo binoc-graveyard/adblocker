@@ -14,12 +14,6 @@ set(SOURCE_PP_FILES
 COPY_TO_DIST("${SOURCE_FILES}")
 COMMON_PREPROCESS("${SOURCE_PP_FILES}")
 
-build_func_preprocess(
-    manifest.ini.in
-    ${FINAL_TARGET}/../package/manifest.ini
-    ${varAddonDefines}
-)
-
 add_subdirectory(components)
 add_subdirectory(content)
 add_subdirectory(defaults)

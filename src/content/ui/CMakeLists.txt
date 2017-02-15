@@ -2,7 +2,6 @@ build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
 set(SRC_JS_FILES
-    ${mk_srcdir}/about.js
     ${mk_srcdir}/composer.js
     ${mk_srcdir}/filters-backup.js
     ${mk_srcdir}/filters-filteractions.js
@@ -13,11 +12,8 @@ set(SRC_JS_FILES
     ${mk_srcdir}/filters.js
     ${mk_srcdir}/firstRun.js
     ${mk_srcdir}/flasher.js
-    ${mk_srcdir}/overlay.js
     ${mk_srcdir}/sendReport.js
-    ${mk_srcdir}/sidebar.js
     ${mk_srcdir}/subscriptionSelection.js
-    ${mk_srcdir}/utils.js
 )
 
 set(SRC_XML_FILES
@@ -26,23 +22,12 @@ set(SRC_XML_FILES
 )
 
 set(SRC_XUL_FILES
-    ${mk_srcdir}/about.xul
-    ${mk_srcdir}/composer.xul
     ${mk_srcdir}/fennecNativeOverlay.xul
     ${mk_srcdir}/fennecOverlay.xul
     ${mk_srcdir}/fennecSettings.xul
     ${mk_srcdir}/fennecSubscription.xul
-    ${mk_srcdir}/filters.xul
-    ${mk_srcdir}/firefoxOverlay.xul
-    ${mk_srcdir}/firstRun.xul
     ${mk_srcdir}/mailOverlay.xul
-    ${mk_srcdir}/overlayGeneral.xul
     ${mk_srcdir}/seamonkeyOverlay.xul
-    ${mk_srcdir}/sendReport.xul
-    ${mk_srcdir}/settings.xul
-    ${mk_srcdir}/sidebar.xul
-    ${mk_srcdir}/sidebarDetached.xul
-    ${mk_srcdir}/subscriptionSelection.xul
     ${mk_srcdir}/thunderbirdOverlay.xul
 )
 
@@ -53,4 +38,24 @@ set(SOURCE_FILES
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")
+
+set(SOURCE_PP_FILES
+    about.js.in
+    about.xul.in
+    composer.xul.in
+    filters.xul.in
+    firefoxOverlay.xul.in
+    firstRun.xul.in
+    overlay.js.in
+    overlayGeneral.xul.in
+    sendReport.xul.in
+    settings.xul.in
+    sidebar.js.in
+    sidebar.xul.in
+    sidebarDetached.xul.in
+    subscriptionSelection.xul.in
+    utils.js.in
+)
+
+COMMON_PREPROCESS("${SOURCE_PP_FILES}")
 

@@ -1,9 +1,9 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(SOURCE_FILES
-    ${mk_srcdir}/adblockplus.js
+set(SOURCE_PP_FILES
+    adblockplus.js.in
 )
 
+COMMON_PREPROCESS("${SOURCE_PP_FILES}")
 
-COPY_TO_DIST(${SOURCE_FILES})
