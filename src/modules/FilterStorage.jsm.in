@@ -15,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
+let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "IO.jsm");
 Cu.import(baseURL + "Prefs.jsm");
@@ -360,7 +360,7 @@ var FilterStorage =
 			explicitFile = false;
 
 			if (!sourceFile || !sourceFile.exists())
-				sourceFile = Utils.makeURI("chrome://@ADDON_CHROME_NAME@-defaults/content/patterns.ini");
+				sourceFile = Utils.makeURI("resource://@ADDON_CHROME_NAME@/defaults/patterns.ini");
 		}
 
 		let readFile = function(sourceFile, backupIndex)

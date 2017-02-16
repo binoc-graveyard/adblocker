@@ -352,7 +352,7 @@ var Utils =
 	 */
 	loadDocLink: function(/**String*/ linkID)
 	{
-		let baseURL = "chrome://@ADDON_CHROME_NAME@-modules/content/";
+		let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
 		Cu.import(baseURL + "Prefs.jsm");
 
 		let link = Prefs.documentation_link.replace(/%LINK%/g, linkID).replace(/%LANG%/g, Utils.appLocale);
