@@ -27,7 +27,7 @@
 <script type="application/x-javascript;version=1.7" src="filters-filterview.js"/>
 <script type="application/x-javascript;version=1.7" src="filters-filteractions.js"/>
 <script type="application/x-javascript;version=1.7" src="filters-backup.js"/>
-<!-- <script type="application/x-javascript;version=1.7" src="filters-search.js"/> -->
+<script type="application/x-javascript;version=1.7" src="filters-search.js"/>
 
 <keyset id="filtersKeyset">
 	<key id="subscription-update-key" key="T" modifiers="accel" command="subscription-update-command"/>
@@ -316,7 +316,7 @@
 
 	<vbox id="filtersContainer" persist="width height" width="500">
 		<hbox pack="end">
-			<!-- <button id="findButton" label="&find.label;" accesskey="&find.accesskey;" command="find-command"/> -->
+			<button id="findButton" label="&find.label;" accesskey="&find.accesskey;" command="find-command"/>
 			<button id="filterActionButton" type="menu" label="&filter.actions.label;">
 				<menupopup id="filterActionMenu" onpopupshowing="FilterActions.fillActionsPopup();">
 					<menuitem label="&filter.edit.label;" key="edit-key" command="filters-edit-command"/>
