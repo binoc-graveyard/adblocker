@@ -1,4 +1,4 @@
-<!ENTITY dialog.title               "Add Adblock Latitude filter subscription">
+<!ENTITY dialog.title               "Add @ADDON_NAME@ filter subscription">
 
 <!ENTITY subscriptionSelector.label "Please choose a filter subscription from the list:">
 
@@ -7,7 +7,7 @@
 
 <!ENTITY addSubscription.label      "Add subscription">
 
-<!ENTITY list.download.failed       "Adblock Latitude failed to retrieve the list of subscriptions.">
+<!ENTITY list.download.failed       "@ADDON_NAME@ failed to retrieve the list of subscriptions.">
 <!ENTITY list.download.retry        "Try again">
 <!ENTITY list.download.website      "View website">
 

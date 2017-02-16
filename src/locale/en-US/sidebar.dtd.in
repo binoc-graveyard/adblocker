@@ -1,4 +1,4 @@
-<!ENTITY detached.title           "Adblock Latitude: Blockable items (detached)">
+<!ENTITY detached.title           "@ADDON_NAME@: Blockable items (detached)">
 
 <!ENTITY detach.label             "Detach">
 <!ENTITY reattach.label           "Reattach">

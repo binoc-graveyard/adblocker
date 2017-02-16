@@ -1,25 +1,17 @@
 build_macro_mkPaths()
 FIND_FINAL_TARGET()
 
-set(SRC_DTD_FILES
-    ${mk_srcdir}/about.dtd
-    ${mk_srcdir}/composer.dtd
-    ${mk_srcdir}/filters.dtd
-    ${mk_srcdir}/firstRun.dtd
-    ${mk_srcdir}/overlay.dtd
-    ${mk_srcdir}/sendReport.dtd
-    ${mk_srcdir}/sidebar.dtd
-    ${mk_srcdir}/subscriptionSelection.dtd
+set(SOURCE_PP_FILES
+    about.dtd.in
+    composer.dtd.in
+    filters.dtd.in
+    firstRun.dtd.in
+    global.properties.in
+    overlay.dtd.in
+    sendReport.dtd.in
+    sidebar.dtd.in
+    subscriptionSelection.dtd.in
 )
 
-set(SRC_PROPERTIES_FILES
-    ${mk_srcdir}/global.properties
-)
-
-set(SOURCE_FILES
-    ${SRC_DTD_FILES}
-    ${SRC_PROPERTIES_FILES}
-)
-
-COPY_TO_DIST("${SOURCE_FILES}")
+COMMON_PREPROCESS("${SOURCE_PP_FILES}")
 

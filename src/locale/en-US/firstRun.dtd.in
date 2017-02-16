@@ -1,7 +1,7 @@
-<!ENTITY dialog.title               "Adblock Latitude installation complete">
+<!ENTITY dialog.title               "@ADDON_NAME@ installation complete">
 
 <!ENTITY confirmation               "
-	Thank you for installing Adblock Latitude. Ads will be blocked from now on.
+	Thank you for installing @ADDON_NAME@. Ads will be blocked from now on.
 	Enjoy!">
 
 <!ENTITY advancedSection            "Advanced options">
@@ -14,7 +14,7 @@
 <!ENTITY visitHomepage.label        "Visit list home page">
 
 <!ENTITY acceptableAds2             "
-	Adblock Latitude has also been configured to allow some non-intrusive advertising.
+	@ADDON_NAME@ has also been configured to allow some non-intrusive advertising.
 ">
 
 <!ENTITY viewList.label             "View list">
