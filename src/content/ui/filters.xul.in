@@ -27,7 +27,7 @@
 <script type="application/x-javascript;version=1.7" src="filters-filterview.js"/>
 <script type="application/x-javascript;version=1.7" src="filters-filteractions.js"/>
 <script type="application/x-javascript;version=1.7" src="filters-backup.js"/>
-<script type="application/x-javascript;version=1.7" src="filters-search.js"/>
+<!-- <script type="application/x-javascript;version=1.7" src="filters-search.js"/> -->
 
 <keyset id="filtersKeyset">
 	<key id="subscription-update-key" key="T" modifiers="accel" command="subscription-update-command"/>

@@ -191,7 +191,7 @@ Subscription.fromObject = function(obj)
 		if ("requiredVersion" in obj)
 		{
 			result.requiredVersion = obj.requiredVersion;
-			if (Utils.versionComparator.compare(result.requiredVersion, Utils.addonVersion) > 0)
+			if (Utils.versionComparator.compare(result.requiredVersion, "3.5.0") > 0)
 				result.upgradeRequired = true;
 		}
 		if ("alternativeLocations" in obj)
