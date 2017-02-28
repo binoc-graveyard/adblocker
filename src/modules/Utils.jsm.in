@@ -32,7 +32,7 @@ var Utils =
 	 */
 	get addonID()
 	{
-		return "@ADDON_CHROME_NAME@@addons.palemoon.org";
+		return "@ADDON_ID@";
 	},
 
 	/**
