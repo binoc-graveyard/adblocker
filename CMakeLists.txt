@@ -39,7 +39,7 @@ if((BINOC_BUILD) AND (NOT CMAKE_BINARY_DIR MATCHES CMAKE_SOURCE_DIR))
     # Add subdirectories
     add_subdirectory(src)
     
-    build_func_package(${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi)
+    build_func_package(${ADDON_XPI_NAME}-${ADDON_VERSION}.xpi, 1)
 else()
     cmake_minimum_required (VERSION 2.8.11)
     project (adblock-latitude NONE)
