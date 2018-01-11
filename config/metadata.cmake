@@ -1,6 +1,6 @@
 # Preprocessor Metadata
 set(ADDON_ID "abprime@projects.binaryoutcast.com")
-set(ADDON_VERSION "1.0.2")
+set(ADDON_VERSION "1.0.3")
 set(ADDON_NAME "ABPrime")
 set(ADDON_XPI_NAME "abprime")
 set(ADDON_SHORT_DESC "Bootstrapped adblocking is yesterday!")
@@ -9,6 +9,7 @@ set(ADDON_TARGET_APP_NAME "Pale Moon")
 set(ADDON_TARGET_APP_ID "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}")
 set(ADDON_TARGET_APP_MINVER "27.0.0")
 set(ADDON_TARGET_APP_MAXVER "27.*")
+set(ADDON_TARGET_BASILISK "1")
 set(ADDON_APMO_ID "pm-100")
 set(ADDON_APMO_TYPE "extension")
 
@@ -25,6 +26,7 @@ set(varAddonDefines
     -DADDON_TARGET_APP_ID="${ADDON_TARGET_APP_ID}"
     -DADDON_TARGET_APP_MINVER="${ADDON_TARGET_APP_MINVER}"
     -DADDON_TARGET_APP_MAXVER="${ADDON_TARGET_APP_MAXVER}"
+    -DADDON_TARGET_BASILISK="${ADDON_TARGET_BASILISK}"
     -DADDON_APMO_ID="${ADDON_APMO_ID}"
     -DADDON_APMO_TYPE="${ADDON_APMO_TYPE}"
 )
