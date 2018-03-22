@@ -976,7 +976,7 @@ WindowWrapper.prototype =
     // Open dialog
     let subscription = {url: url, title: title, disabled: false, external: false,
                         mainSubscriptionTitle: mainSubscriptionTitle, mainSubscriptionURL: mainSubscriptionURL};
-    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/subscriptionSelection.xul", "_blank",
+    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/subscriptionSelection.xul", "_blank",
                            "chrome,centerscreen,resizable,dialog=no", subscription, null);
   },
 
@@ -1175,7 +1175,7 @@ WindowWrapper.prototype =
     if (wnd)
       wnd.focus();
     else
-      this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
+      this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
   },
 
   /**
@@ -1229,13 +1229,13 @@ WindowWrapper.prototype =
       if (sidebar && (!Prefs.detachsidebar || !sidebar.hidden))
       {
         this.E("abp-sidebar-splitter").hidden = !sidebar.hidden;
-        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://@ADDON_CHROME_NAME@/content/ui/sidebar.xul" : "about:blank");
+        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://@ADDON_CHROME_NAME@/content/sidebar.xul" : "about:blank");
         sidebar.hidden = !sidebar.hidden;
         if (sidebar.hidden)
           this.getBrowser().contentWindow.focus();
       }
       else
-        this.detachedSidebar = this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
+        this.detachedSidebar = this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
     }
   },
 
@@ -1440,7 +1440,7 @@ WindowWrapper.prototype =
     if (!item)
       return;
 
-    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
+    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
   }
 };
 
@@ -1611,12 +1611,12 @@ function addSubscription()
     let wrapper = (wrappers.length ? wrappers[0] : null);
     if (wrapper && wrapper.addTab)
     {
-      wrapper.addTab("chrome://@ADDON_CHROME_NAME@/content/ui/firstRun.xul");
+      wrapper.addTab("chrome://@ADDON_CHROME_NAME@/content/firstRun.xul");
     }
     else
     {
       Utils.windowWatcher.openWindow(wrapper ? wrapper.window : null,
-                                     "chrome://@ADDON_CHROME_NAME@/content/ui/firstRun.xul",
+                                     "chrome://@ADDON_CHROME_NAME@/content/firstRun.xul",
                                      "_blank", "chrome,centerscreen,resizable,dialog=no", null);
     }
   }
@@ -1625,7 +1625,7 @@ function addSubscription()
   {
     // Load subscriptions data
     let request = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-    request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/ui/subscriptions.xml");
+    request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/subscriptions.xml");
     request.addEventListener("load", function()
     {
       let node = Utils.chooseFilterSubscription(request.responseXML.getElementsByTagName("subscription"));

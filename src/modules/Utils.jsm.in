@@ -302,7 +302,7 @@ var Utils =
     }
     else
     {
-      Utils.windowWatcher.openWindow(null, "chrome://@ADDON_CHROME_NAME@/content/ui/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
+      Utils.windowWatcher.openWindow(null, "chrome://@ADDON_CHROME_NAME@/content/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
     }
   },
 

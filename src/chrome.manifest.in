@@ -1,8 +1,8 @@
 # Chrome Registration
 #ifdef ADDON_TARGET_BASILISK
-overlay   chrome://browser/content/browser.xul chrome://@ADDON_CHROME_NAME@/content/ui/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@ application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay   chrome://browser/content/browser.xul chrome://@ADDON_CHROME_NAME@/content/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@ application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 #else
-overlay   chrome://browser/content/browser.xul chrome://@ADDON_CHROME_NAME@/content/ui/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@
+overlay   chrome://browser/content/browser.xul chrome://@ADDON_CHROME_NAME@/content/firefoxOverlay.xul application=@ADDON_TARGET_APP_ID@
 #endif
 content   @ADDON_CHROME_NAME@ content/
 skin      @ADDON_CHROME_NAME@ classic/1.0 skin/
