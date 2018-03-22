@@ -3,8 +3,6 @@ FIND_FINAL_TARGET()
 
 set(SOURCE_PP_FILES
     AppIntegration.jsm.in
-    AppIntegrationFennec.jsm.in
-    AppIntegrationFennecNative.jsm.in
     Bootstrap.jsm.in
     ContentPolicy.jsm.in
     ContentPolicyRemote.jsm.in
