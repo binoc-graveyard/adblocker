@@ -30,5 +30,5 @@ Cu.import(baseURL + "Utils.jsm");
  */
 function E(id)
 {
-	return document.getElementById(id);
+  return document.getElementById(id);
 }

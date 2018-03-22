@@ -24,26 +24,26 @@ Cu.import(baseURL + "TimeLine.jsm");
 
 let publicURL = Services.io.newURI(baseURL + "Public.jsm", null, null);
 if (publicURL instanceof Ci.nsIMutable)
-	publicURL.mutable = false;
+  publicURL.mutable = false;
 
 const cidPublic = Components.ID("5e447bce-1dd2-11b2-b151-ec21c2b6a135");
 const contractIDPublic = "@adblockplus.org/abp/public;1";
 let factoryPublic =
 {
-	createInstance: function(outer, iid)
-	{
-		if (outer)
-			throw Cr.NS_ERROR_NO_AGGREGATION;
-		return publicURL.QueryInterface(iid);
-	}
+  createInstance: function(outer, iid)
+  {
+    if (outer)
+      throw Cr.NS_ERROR_NO_AGGREGATION;
+    return publicURL.QueryInterface(iid);
+  }
 };
 
 let defaultModules = [
-	baseURL + "Prefs.jsm",
-	baseURL + "FilterListener.jsm",
-	baseURL + "ContentPolicy.jsm",
-	baseURL + "Synchronizer.jsm",
-//	baseURL + "Sync.jsm"
+  baseURL + "Prefs.jsm",
+  baseURL + "FilterListener.jsm",
+  baseURL + "ContentPolicy.jsm",
+  baseURL + "Synchronizer.jsm",
+//  baseURL + "Sync.jsm"
 ];
 
 let loadedModules = {__proto__: null};
@@ -56,110 +56,110 @@ let initialized = false;
  */
 var Bootstrap =
 {
-	/**
-	 * Initializes add-on, loads and initializes all modules.
-	 */
-	startup: function()
-	{
-		if (initialized)
-			return;
-		initialized = true;
+  /**
+   * Initializes add-on, loads and initializes all modules.
+   */
+  startup: function()
+  {
+    if (initialized)
+      return;
+    initialized = true;
 
-		TimeLine.enter("Entered Bootstrap.startup()");
-	
-		// Register component to allow retrieving public URL
-		
-		let registrar = Components.manager.QueryInterface(Ci.nsIComponentRegistrar);
-		registrar.registerFactory(cidPublic, "Adblock Plus public module URL", contractIDPublic, factoryPublic);
+    TimeLine.enter("Entered Bootstrap.startup()");
+  
+    // Register component to allow retrieving public URL
+    
+    let registrar = Components.manager.QueryInterface(Ci.nsIComponentRegistrar);
+    registrar.registerFactory(cidPublic, "Adblock Plus public module URL", contractIDPublic, factoryPublic);
 
-		TimeLine.log("done registering URL components");
-	
-		// Load and initialize modules
-	
-		TimeLine.log("started initializing modules");
-	
-		for each (let url in defaultModules)
-			Bootstrap.loadModule(url);
+    TimeLine.log("done registering URL components");
+  
+    // Load and initialize modules
+  
+    TimeLine.log("started initializing modules");
+  
+    for each (let url in defaultModules)
+      Bootstrap.loadModule(url);
 
-		TimeLine.leave("Bootstrap.startup() done");
-	},
+    TimeLine.leave("Bootstrap.startup() done");
+  },
 
-	/**
-	 * Shuts down add-on.
-	 */
-	shutdown: function()
-	{
-		if (!initialized)
-			return;
+  /**
+   * Shuts down add-on.
+   */
+  shutdown: function()
+  {
+    if (!initialized)
+      return;
 
-		TimeLine.enter("Entered Bootstrap.shutdown()");
+    TimeLine.enter("Entered Bootstrap.shutdown()");
 
-		// Shut down modules
-		for (let url in loadedModules)
-			Bootstrap.shutdownModule(url);
+    // Shut down modules
+    for (let url in loadedModules)
+      Bootstrap.shutdownModule(url);
 
-		TimeLine.leave("Bootstrap.shutdown() done");
-	},
+    TimeLine.leave("Bootstrap.shutdown() done");
+  },
 
-	/**
-	 * Loads and initializes a module.
-	 */
-	loadModule: function(/**String*/ url)
-	{
-		if (url in loadedModules)
-			return;
+  /**
+   * Loads and initializes a module.
+   */
+  loadModule: function(/**String*/ url)
+  {
+    if (url in loadedModules)
+      return;
 
-		let module = {};
-		try
-		{
-			Cu.import(url, module);
-		}
-		catch (e)
-		{
-			Cu.reportError("Adblock Plus: Failed to load module " + url + ": " + e);
-			return;
-		}
+    let module = {};
+    try
+    {
+      Cu.import(url, module);
+    }
+    catch (e)
+    {
+      Cu.reportError("Adblock Plus: Failed to load module " + url + ": " + e);
+      return;
+    }
 
-		for each (let obj in module)
-		{
-			if ("startup" in obj)
-			{
-				try
-				{
-					obj.startup();
-					loadedModules[url] = obj;
-				}
-				catch (e)
-				{
-					Cu.reportError("Adblock Plus: Calling method startup() for module " + url + " failed: " + e);
-				}
-				return;
-			}
-		}
+    for each (let obj in module)
+    {
+      if ("startup" in obj)
+      {
+        try
+        {
+          obj.startup();
+          loadedModules[url] = obj;
+        }
+        catch (e)
+        {
+          Cu.reportError("Adblock Plus: Calling method startup() for module " + url + " failed: " + e);
+        }
+        return;
+      }
+    }
 
-		Cu.reportError("Adblock Plus: No exported object with startup() method found for module " + url);
-	},
+    Cu.reportError("Adblock Plus: No exported object with startup() method found for module " + url);
+  },
 
-	/**
-	 * Shuts down a module.
-	 */
-	shutdownModule: function(/**String*/ url)
-	{
-		if (!(url in loadedModules))
-			return;
+  /**
+   * Shuts down a module.
+   */
+  shutdownModule: function(/**String*/ url)
+  {
+    if (!(url in loadedModules))
+      return;
 
-		let obj = loadedModules[url];
-		if ("shutdown" in obj)
-		{
-			try
-			{
-				obj.shutdown();
-			}
-			catch (e)
-			{
-				Cu.reportError("Adblock Plus: Calling method shutdown() for module " + url + " failed: " + e);
-			}
-			return;
-		}
-	}
+    let obj = loadedModules[url];
+    if ("shutdown" in obj)
+    {
+      try
+      {
+        obj.shutdown();
+      }
+      catch (e)
+      {
+        Cu.reportError("Adblock Plus: Calling method shutdown() for module " + url + " failed: " + e);
+      }
+      return;
+    }
+  }
 };

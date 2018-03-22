@@ -8,45 +8,45 @@
 
 :root
 {
-	max-width: 500px;
-	background-image: url(abp-icon-big.png);
-	background-repeat: no-repeat;
-	background-position: 95% 5%;
-	font-size: 130%;
+  max-width: 500px;
+  background-image: url(abp-icon-big.png);
+  background-repeat: no-repeat;
+  background-position: 95% 5%;
+  font-size: 130%;
 }
 
 .sectionTitle
 {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #changeDescription > .text-link
 {
-	margin: 0px;
+  margin: 0px;
 }
 
 #listNameContainer,
 #listNone
 {
-	margin: 10px 40px;
+  margin: 10px 40px;
 }
 
 #listNone
 {
-	font-style: italic;
+  font-style: italic;
 }
 
 #acceptableAds
 {
-	font-size: 90%;
-	font-weight: bold;
+  font-size: 90%;
+  font-weight: bold;
 }
 #acceptableAds > *
 {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 .sectionContainer
 {
-	margin: 1em 2em;
+  margin: 1em 2em;
 }

@@ -11,9 +11,9 @@
 <!ENTITY addSubscriptionOther.label           "Add a different subscription">
 
 <!ENTITY noSubscriptions.text                 "
-	You haven't added any filter subscriptions yet. @ADDON_NAME@ won't block
-	anything without filters, please use &quot;Add filter subscription&quot; to
-	add some.
+  You haven't added any filter subscriptions yet. @ADDON_NAME@ won't block
+  anything without filters, please use &quot;Add filter subscription&quot; to
+  add some.
 ">
 <!ENTITY subscription.homepage.label          "Homepage">
 <!ENTITY subscription.external.label          "Updated by another extension">
@@ -48,7 +48,7 @@
 <!ENTITY addGroup.accesskey                   "g">
 
 <!ENTITY noFilters.text                       "
-	You don't have any custom filters yet.
+  You don't have any custom filters yet.
 ">
 
 <!ENTITY addFilter.label                      "Add filter">

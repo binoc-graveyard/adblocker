@@ -8,82 +8,82 @@
 
 .wizard-header
 {
-	-moz-binding: url(chrome://adblockplus/content/ui/sendReport.xul#headerBinding) !important;
-	padding: 10px 5px !important;
+  -moz-binding: url(chrome://adblockplus/content/ui/sendReport.xul#headerBinding) !important;
+  padding: 10px 5px !important;
 }
 
 .progressLabel
 {
-	margin: 5px 0px;
-	text-align: center;
-	font-size: 110%;
-	font-weight: normal;
+  margin: 5px 0px;
+  text-align: center;
+  font-size: 110%;
+  font-weight: normal;
 }
 
 .progressLabel.active
 {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 progressmeter
 {
-	margin-top: 100px;
+  margin-top: 100px;
 }
 
 .radioDescription
 {
-	-moz-margin-start: 32px;
+  -moz-margin-start: 32px;
 }
 
 radio, checkbox, .topLabel, #dataDeck
 {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #recentReports
 {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #recentReportsList
 {
-	overflow-x: hidden;
-	overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #outdatedSubscriptionsList
 {
-	margin: 10px 20px;
+  margin: 10px 20px;
 }
 
 #issuesBox
 {
-	overflow: auto;
+  overflow: auto;
 }
 
 #issuesChangeMessage
 {
-	color: red;
+  color: red;
 }
 
 #screenshotButtons
 {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #screenshotBox
 {
-	overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 #commentLengthWarning
 {
-	color: red;
+  color: red;
 }
 
 #commentLengthWarning[visible="false"]
 {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 /*
@@ -91,21 +91,21 @@ radio, checkbox, .topLabel, #dataDeck
  */
 #data:-moz-locale-dir(rtl)
 {
-	direction: ltr;
+  direction: ltr;
 }
 
 #sendReportError
 {
-	color: red;
-	font-size: 150%;
+  color: red;
+  font-size: 150%;
 }
 
 #sendReportErrorLinks, #typeWarningTextLink
 {
-	margin: 0px;
+  margin: 0px;
 }
 
 #sendReportErrorBox
 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }

@@ -10,382 +10,382 @@ let advancedMode = false;
 
 function init()
 {
-	[nodes, item] = window.arguments;
+  [nodes, item] = window.arguments;
 
-	E("filterType").value = (!item.filter || item.filter.disabled || item.filter instanceof WhitelistFilter ? "filterlist" : "whitelist");
-	E("customPattern").value = item.location;
+  E("filterType").value = (!item.filter || item.filter.disabled || item.filter instanceof WhitelistFilter ? "filterlist" : "whitelist");
+  E("customPattern").value = item.location;
 
-	let insertionPoint = E("customPatternBox");
-	let addSuggestion = function(address)
-	{
-		// Always drop protocol and www. from the suggestion
-		address = address.replace(/^[\w\-]+:\/+(?:www\.)?/, "");
+  let insertionPoint = E("customPatternBox");
+  let addSuggestion = function(address)
+  {
+    // Always drop protocol and www. from the suggestion
+    address = address.replace(/^[\w\-]+:\/+(?:www\.)?/, "");
 
-		let suggestion = document.createElement("radio");
-		suggestion.setAttribute("value", address);
-		suggestion.setAttribute("label", address);
-		suggestion.setAttribute("crop", "center");
-		suggestion.setAttribute("class", "suggestion");
-		insertionPoint.parentNode.insertBefore(suggestion, insertionPoint);
+    let suggestion = document.createElement("radio");
+    suggestion.setAttribute("value", address);
+    suggestion.setAttribute("label", address);
+    suggestion.setAttribute("crop", "center");
+    suggestion.setAttribute("class", "suggestion");
+    insertionPoint.parentNode.insertBefore(suggestion, insertionPoint);
 
-		return address;
-	}
+    return address;
+  }
 
-	let ioService = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
-	try
-	{
-		let suggestions = [""];
+  let ioService = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
+  try
+  {
+    let suggestions = [""];
 
-		let url = ioService.newURI(item.location, null, null)
-											 .QueryInterface(Ci.nsIURL);
-		let suffix = (url.query ? "?*" : "");
-		url.query = "";
-		suggestions[1] = addSuggestion(url.spec + suffix);
+    let url = ioService.newURI(item.location, null, null)
+                       .QueryInterface(Ci.nsIURL);
+    let suffix = (url.query ? "?*" : "");
+    url.query = "";
+    suggestions[1] = addSuggestion(url.spec + suffix);
 
-		let parentURL = ioService.newURI(url.fileName == "" ? ".." : ".", null, url);
-		if (!parentURL.equals(url))
-			suggestions[2] = addSuggestion(parentURL.spec + "*");
-		else
-			suggestions[2] = suggestions[1];
+    let parentURL = ioService.newURI(url.fileName == "" ? ".." : ".", null, url);
+    if (!parentURL.equals(url))
+      suggestions[2] = addSuggestion(parentURL.spec + "*");
+    else
+      suggestions[2] = suggestions[1];
 
-		let rootURL = ioService.newURI("/", null, url);
-		if (!rootURL.equals(parentURL) && !rootURL.equals(url))
-			suggestions[3] = addSuggestion(rootURL.spec + "*");
-		else
-			suggestions[3] = suggestions[2];
+    let rootURL = ioService.newURI("/", null, url);
+    if (!rootURL.equals(parentURL) && !rootURL.equals(url))
+      suggestions[3] = addSuggestion(rootURL.spec + "*");
+    else
+      suggestions[3] = suggestions[2];
 
-		try
-		{
-			suggestions[4] = addSuggestion(url.host.replace(/^www\./, "") + "^");
+    try
+    {
+      suggestions[4] = addSuggestion(url.host.replace(/^www\./, "") + "^");
 
-			// Prefer example.com^ to example.com/*
-			let undesired = suggestions[4].replace(/\^$/, "/*");
-			for (let i = 0; i < suggestions.length - 1; i++)
-				if (suggestions[i] == undesired)
-					suggestions[i] = suggestions[4];
+      // Prefer example.com^ to example.com/*
+      let undesired = suggestions[4].replace(/\^$/, "/*");
+      for (let i = 0; i < suggestions.length - 1; i++)
+        if (suggestions[i] == undesired)
+          suggestions[i] = suggestions[4];
 
-			for (let child = insertionPoint.parentNode.firstChild; child; child = child.nextSibling)
-			{
-				if (child.localName == "radio" && child.getAttribute("value") == undesired)
-				{
-					child.parentNode.removeChild(child);
-					break;
-				}
-			}
-		}
-		catch (e)
-		{
-			suggestions[4] = suggestions[3];
-		}
+      for (let child = insertionPoint.parentNode.firstChild; child; child = child.nextSibling)
+      {
+        if (child.localName == "radio" && child.getAttribute("value") == undesired)
+        {
+          child.parentNode.removeChild(child);
+          break;
+        }
+      }
+    }
+    catch (e)
+    {
+      suggestions[4] = suggestions[3];
+    }
 
-		try
-		{
-			let effectiveTLD = Cc["@mozilla.org/network/effective-tld-service;1"].getService(Ci.nsIEffectiveTLDService);
-			let host = url.host;
-			let baseDomain = effectiveTLD.getBaseDomainFromHost(host);
-			if (baseDomain != host.replace(/^www\./, ""))
-				suggestions[5] = addSuggestion(baseDomain + "^");
-			else
-				suggestions[5] = suggestions[4];
-		}
-		catch (e)
-		{
-			suggestions[5] = suggestions[4];
-		}
+    try
+    {
+      let effectiveTLD = Cc["@mozilla.org/network/effective-tld-service;1"].getService(Ci.nsIEffectiveTLDService);
+      let host = url.host;
+      let baseDomain = effectiveTLD.getBaseDomainFromHost(host);
+      if (baseDomain != host.replace(/^www\./, ""))
+        suggestions[5] = addSuggestion(baseDomain + "^");
+      else
+        suggestions[5] = suggestions[4];
+    }
+    catch (e)
+    {
+      suggestions[5] = suggestions[4];
+    }
 
-		E("patternGroup").value = (Prefs.composer_default in suggestions ? suggestions[Prefs.composer_default] : suggestions[1]);
-	}
-	catch (e)
-	{
-		// IOService returned nsIURI - not much we can do with it
-		addSuggestion(item.location);
-		E("patternGroup").value = "";
-	}
-	if (Prefs.composer_default == 0)
-		E("customPattern").focus();
-	else
-		E("patternGroup").focus();
+    E("patternGroup").value = (Prefs.composer_default in suggestions ? suggestions[Prefs.composer_default] : suggestions[1]);
+  }
+  catch (e)
+  {
+    // IOService returned nsIURI - not much we can do with it
+    addSuggestion(item.location);
+    E("patternGroup").value = "";
+  }
+  if (Prefs.composer_default == 0)
+    E("customPattern").focus();
+  else
+    E("patternGroup").focus();
 
-	let types = [];
-	for (let type in Policy.localizedDescr)
-	{
-		types.push(parseInt(type));
-	}
-	types.sort(function(a, b) {
-		if (a < b)
-			return -1;
-		else if (a > b)
-			return 1;
-		else
-			return 0;
-	});
+  let types = [];
+  for (let type in Policy.localizedDescr)
+  {
+    types.push(parseInt(type));
+  }
+  types.sort(function(a, b) {
+    if (a < b)
+      return -1;
+    else if (a > b)
+      return 1;
+    else
+      return 0;
+  });
 
-	let docDomain = item.docDomain;
-	let thirdParty = item.thirdParty;
+  let docDomain = item.docDomain;
+  let thirdParty = item.thirdParty;
 
-	if (docDomain)
-		docDomain = docDomain.replace(/^www\./i, "").replace(/\.+$/, "");
-	if (docDomain)
-		E("domainRestriction").value = docDomain;
+  if (docDomain)
+    docDomain = docDomain.replace(/^www\./i, "").replace(/\.+$/, "");
+  if (docDomain)
+    E("domainRestriction").value = docDomain;
 
-	E("thirdParty").hidden = !thirdParty;
-	E("firstParty").hidden = thirdParty;
+  E("thirdParty").hidden = !thirdParty;
+  E("firstParty").hidden = thirdParty;
 
-	let typeGroup = E("typeGroup");
-	let defaultTypes = RegExpFilter.prototype.contentType & ~RegExpFilter.typeMap.DOCUMENT;
-	let isDefaultType = (RegExpFilter.typeMap[item.typeDescr] & defaultTypes) != 0;
-	for each (let type in types)
-	{
-		if (type == Policy.type.ELEMHIDE)
-			continue;
+  let typeGroup = E("typeGroup");
+  let defaultTypes = RegExpFilter.prototype.contentType & ~RegExpFilter.typeMap.DOCUMENT;
+  let isDefaultType = (RegExpFilter.typeMap[item.typeDescr] & defaultTypes) != 0;
+  for each (let type in types)
+  {
+    if (type == Policy.type.ELEMHIDE)
+      continue;
 
-		let typeNode = document.createElement("checkbox");
-		typeNode.setAttribute("value", Policy.typeDescr[type].toLowerCase().replace(/\_/g, "-"));
-		typeNode.setAttribute("label", Policy.localizedDescr[type].toLowerCase());
+    let typeNode = document.createElement("checkbox");
+    typeNode.setAttribute("value", Policy.typeDescr[type].toLowerCase().replace(/\_/g, "-"));
+    typeNode.setAttribute("label", Policy.localizedDescr[type].toLowerCase());
 
-		let typeMask = RegExpFilter.typeMap[Policy.typeDescr[type]];
-		typeNode._defaultType = (typeMask & defaultTypes) != 0;
-		if ((isDefaultType && typeNode._defaultType) || (!isDefaultType && item.type == type))
-			typeNode.setAttribute("checked", "true");
+    let typeMask = RegExpFilter.typeMap[Policy.typeDescr[type]];
+    typeNode._defaultType = (typeMask & defaultTypes) != 0;
+    if ((isDefaultType && typeNode._defaultType) || (!isDefaultType && item.type == type))
+      typeNode.setAttribute("checked", "true");
 
-		if (item.type == type)
-			typeNode.setAttribute("disabled", "true");
-		typeNode.addEventListener("command", function() checkboxUpdated(this), false);
-		typeGroup.appendChild(typeNode);
-	}
+    if (item.type == type)
+      typeNode.setAttribute("disabled", "true");
+    typeNode.addEventListener("command", function() checkboxUpdated(this), false);
+    typeGroup.appendChild(typeNode);
+  }
 
-	let collapseDefault = E("collapseDefault");
-	collapseDefault.label = collapseDefault.getAttribute(Prefs.fastcollapse ? "label_no" : "label_yes");
-	E("collapse").value = "";
-	E("collapse").setAttribute("label", collapseDefault.label);
+  let collapseDefault = E("collapseDefault");
+  collapseDefault.label = collapseDefault.getAttribute(Prefs.fastcollapse ? "label_no" : "label_yes");
+  E("collapse").value = "";
+  E("collapse").setAttribute("label", collapseDefault.label);
 
-	let warning = E("disabledWarning");
-	generateLinkText(warning);
-	warning.hidden = Prefs.enabled;
+  let warning = E("disabledWarning");
+  generateLinkText(warning);
+  warning.hidden = Prefs.enabled;
 
-	updatePatternSelection();
+  updatePatternSelection();
 }
 
 function checkboxUpdated(checkbox)
 {
-	checkbox._lastChange = Date.now();
-	updateFilter();
+  checkbox._lastChange = Date.now();
+  updateFilter();
 }
 
 function updateFilter()
 {
-	let filter = "";
+  let filter = "";
 
-	let type = E("filterType").value
-	if (type == "whitelist")
-		filter += "@@";
+  let type = E("filterType").value
+  if (type == "whitelist")
+    filter += "@@";
 
-	let pattern = E("patternGroup").value;
-	if (pattern == "")
-		pattern = E("customPattern").value;
+  let pattern = E("patternGroup").value;
+  if (pattern == "")
+    pattern = E("customPattern").value;
 
-	if (E("anchorStart").checked)
-		filter += E("anchorStart").flexibleAnchor ? "||" : "|";
+  if (E("anchorStart").checked)
+    filter += E("anchorStart").flexibleAnchor ? "||" : "|";
 
-	filter += pattern;
+  filter += pattern;
 
-	if (E("anchorEnd").checked)
-		filter += "|";
+  if (E("anchorEnd").checked)
+    filter += "|";
 
-	if (advancedMode)
-	{
-		let options = [];
+  if (advancedMode)
+  {
+    let options = [];
 
-		if (E("domainRestrictionEnabled").checked)
-		{
-			let domainRestriction = E("domainRestriction").value.replace(/[,\s]/g, "").replace(/\.+$/, "");
-			if (domainRestriction)
-				options.push([E("domainRestrictionEnabled")._lastChange || 0, "domain=" + domainRestriction]);
-		}
+    if (E("domainRestrictionEnabled").checked)
+    {
+      let domainRestriction = E("domainRestriction").value.replace(/[,\s]/g, "").replace(/\.+$/, "");
+      if (domainRestriction)
+        options.push([E("domainRestrictionEnabled")._lastChange || 0, "domain=" + domainRestriction]);
+    }
 
-		if (E("firstParty").checked)
-			options.push([E("firstParty")._lastChange || 0, "~third-party"]);
-		if (E("thirdParty").checked)
-			options.push([E("thirdParty")._lastChange || 0, "third-party"]);
+    if (E("firstParty").checked)
+      options.push([E("firstParty")._lastChange || 0, "~third-party"]);
+    if (E("thirdParty").checked)
+      options.push([E("thirdParty")._lastChange || 0, "third-party"]);
 
-		if (E("matchCase").checked)
-			options.push([E("matchCase")._lastChange || 0, "match-case"]);
+    if (E("matchCase").checked)
+      options.push([E("matchCase")._lastChange || 0, "match-case"]);
 
-		let collapse = E("collapse");
-		disableElement(collapse, type == "whitelist", "value", "");
-		if (collapse.value != "")
-			options.push([collapse._lastChange, collapse.value]);
+    let collapse = E("collapse");
+    disableElement(collapse, type == "whitelist", "value", "");
+    if (collapse.value != "")
+      options.push([collapse._lastChange, collapse.value]);
 
-		let enabledTypes = [];
-		let disabledTypes = [];
-		let forceEnabledTypes = [];
-		for (let typeNode = E("typeGroup").firstChild; typeNode; typeNode = typeNode.nextSibling)
-		{
-			let value = typeNode.getAttribute("value");
-			if (value == "document")
-				disableElement(typeNode, type != "whitelist", "checked", false);
+    let enabledTypes = [];
+    let disabledTypes = [];
+    let forceEnabledTypes = [];
+    for (let typeNode = E("typeGroup").firstChild; typeNode; typeNode = typeNode.nextSibling)
+    {
+      let value = typeNode.getAttribute("value");
+      if (value == "document")
+        disableElement(typeNode, type != "whitelist", "checked", false);
 
-			if (!typeNode._defaultType)
-			{
-				if (typeNode.getAttribute("checked") == "true")
-					forceEnabledTypes.push([typeNode._lastChange || 0, value]);
-			}
-			else if (typeNode.getAttribute("checked") == "true")
-				enabledTypes.push([typeNode._lastChange || 0, value]);
-			else
-				disabledTypes.push([typeNode._lastChange || 0, "~" + value]);
-		}
-		if (!forceEnabledTypes.length && disabledTypes.length < enabledTypes.length)
-			options.push.apply(options, disabledTypes);
-		else
-			options.push.apply(options, enabledTypes);
-		options.push.apply(options, forceEnabledTypes);
+      if (!typeNode._defaultType)
+      {
+        if (typeNode.getAttribute("checked") == "true")
+          forceEnabledTypes.push([typeNode._lastChange || 0, value]);
+      }
+      else if (typeNode.getAttribute("checked") == "true")
+        enabledTypes.push([typeNode._lastChange || 0, value]);
+      else
+        disabledTypes.push([typeNode._lastChange || 0, "~" + value]);
+    }
+    if (!forceEnabledTypes.length && disabledTypes.length < enabledTypes.length)
+      options.push.apply(options, disabledTypes);
+    else
+      options.push.apply(options, enabledTypes);
+    options.push.apply(options, forceEnabledTypes);
 
-		if (options.length)
-		{
-			options.sort(function(a, b) a[0] - b[0]);
-			filter += "$" + options.map(function(o) o[1]).join(",");
-		}
-	}
-	else
-	{
-		let defaultTypes = RegExpFilter.prototype.contentType & ~RegExpFilter.typeMap.DOCUMENT;
-		let isDefaultType = (RegExpFilter.typeMap[item.typeDescr] & defaultTypes) != 0;
-		if (!isDefaultType)
-			filter += "$" + item.typeDescr.toLowerCase().replace(/\_/g, "-");
-	}
+    if (options.length)
+    {
+      options.sort(function(a, b) a[0] - b[0]);
+      filter += "$" + options.map(function(o) o[1]).join(",");
+    }
+  }
+  else
+  {
+    let defaultTypes = RegExpFilter.prototype.contentType & ~RegExpFilter.typeMap.DOCUMENT;
+    let isDefaultType = (RegExpFilter.typeMap[item.typeDescr] & defaultTypes) != 0;
+    if (!isDefaultType)
+      filter += "$" + item.typeDescr.toLowerCase().replace(/\_/g, "-");
+  }
 
-	filter = Filter.normalize(filter);
-	E("regexpWarning").hidden = !Filter.regexpRegExp.test(filter);
+  filter = Filter.normalize(filter);
+  E("regexpWarning").hidden = !Filter.regexpRegExp.test(filter);
 
-	let isSlow = false;
-	let compiledFilter = Filter.fromText(filter);
-	if (E("regexpWarning").hidden)
-	{
-		if (compiledFilter instanceof RegExpFilter && defaultMatcher.isSlowFilter(compiledFilter))
-			isSlow = true;
-	}
-	E("shortpatternWarning").hidden = !isSlow;
+  let isSlow = false;
+  let compiledFilter = Filter.fromText(filter);
+  if (E("regexpWarning").hidden)
+  {
+    if (compiledFilter instanceof RegExpFilter && defaultMatcher.isSlowFilter(compiledFilter))
+      isSlow = true;
+  }
+  E("shortpatternWarning").hidden = !isSlow;
 
-	E("matchWarning").hidden = compiledFilter instanceof RegExpFilter && compiledFilter.matches(item.location, item.typeDescr, item.docDomain, item.thirdParty);
+  E("matchWarning").hidden = compiledFilter instanceof RegExpFilter && compiledFilter.matches(item.location, item.typeDescr, item.docDomain, item.thirdParty);
 
-	E("filter").value = filter;
+  E("filter").value = filter;
 }
 
 function generateLinkText(element, replacement)
 {
-	let template = element.getAttribute("textTemplate");
-	if (typeof replacement != "undefined")
-		template = template.replace(/\?1\?/g, replacement)
+  let template = element.getAttribute("textTemplate");
+  if (typeof replacement != "undefined")
+    template = template.replace(/\?1\?/g, replacement)
 
-	let [, beforeLink, linkText, afterLink] = /(.*)\[link\](.*)\[\/link\](.*)/.exec(template) || [null, "", template, ""];
-	while (element.firstChild && element.firstChild.nodeType != Node.ELEMENT_NODE)
-		element.removeChild(element.firstChild);
-	while (element.lastChild && element.lastChild.nodeType != Node.ELEMENT_NODE)
-		element.removeChild(element.lastChild);
-	if (!element.firstChild)
-		return;
+  let [, beforeLink, linkText, afterLink] = /(.*)\[link\](.*)\[\/link\](.*)/.exec(template) || [null, "", template, ""];
+  while (element.firstChild && element.firstChild.nodeType != Node.ELEMENT_NODE)
+    element.removeChild(element.firstChild);
+  while (element.lastChild && element.lastChild.nodeType != Node.ELEMENT_NODE)
+    element.removeChild(element.lastChild);
+  if (!element.firstChild)
+    return;
 
-	element.firstChild.textContent = linkText;
-	element.insertBefore(document.createTextNode(beforeLink), element.firstChild);
-	element.appendChild(document.createTextNode(afterLink));
+  element.firstChild.textContent = linkText;
+  element.insertBefore(document.createTextNode(beforeLink), element.firstChild);
+  element.appendChild(document.createTextNode(afterLink));
 }
 
 function updatePatternSelection()
 {
-	let pattern = E("patternGroup").value;
-	if (pattern == "")
-	{
-		pattern = E("customPattern").value;
-	}
-	else
-	{
-		E("anchorStart").checked = true;
-		E("anchorEnd").checked = false;
-	}
+  let pattern = E("patternGroup").value;
+  if (pattern == "")
+  {
+    pattern = E("customPattern").value;
+  }
+  else
+  {
+    E("anchorStart").checked = true;
+    E("anchorEnd").checked = false;
+  }
 
-	function testFilter(/**String*/ filter) /**Boolean*/
-	{
-		return RegExpFilter.fromText(filter + "$" + item.typeDescr).matches(item.location, item.typeDescr, item.docDomain, item.thirdParty);
-	}
+  function testFilter(/**String*/ filter) /**Boolean*/
+  {
+    return RegExpFilter.fromText(filter + "$" + item.typeDescr).matches(item.location, item.typeDescr, item.docDomain, item.thirdParty);
+  }
 
-	let anchorStartCheckbox = E("anchorStart");
-	if (!/^\*/.test(pattern) && testFilter("||" + pattern))
-	{
-		disableElement(anchorStartCheckbox, false, "checked", false);
-		anchorStartCheckbox.setAttribute("label", anchorStartCheckbox.getAttribute("labelFlexible"));
-		anchorStartCheckbox.accessKey =  anchorStartCheckbox.getAttribute("accesskeyFlexible");
-		anchorStartCheckbox.flexibleAnchor = true;
-	}
-	else
-	{
-		disableElement(anchorStartCheckbox, /^\*/.test(pattern) || !testFilter("|" + pattern), "checked", false);
-		anchorStartCheckbox.setAttribute("label", anchorStartCheckbox.getAttribute("labelRegular"));
-		anchorStartCheckbox.accessKey = anchorStartCheckbox.getAttribute("accesskeyRegular");
-		anchorStartCheckbox.flexibleAnchor = false;
-	}
-	disableElement(E("anchorEnd"), /[\*\^]$/.test(pattern) || !testFilter(pattern + "|"), "checked", false);
+  let anchorStartCheckbox = E("anchorStart");
+  if (!/^\*/.test(pattern) && testFilter("||" + pattern))
+  {
+    disableElement(anchorStartCheckbox, false, "checked", false);
+    anchorStartCheckbox.setAttribute("label", anchorStartCheckbox.getAttribute("labelFlexible"));
+    anchorStartCheckbox.accessKey =  anchorStartCheckbox.getAttribute("accesskeyFlexible");
+    anchorStartCheckbox.flexibleAnchor = true;
+  }
+  else
+  {
+    disableElement(anchorStartCheckbox, /^\*/.test(pattern) || !testFilter("|" + pattern), "checked", false);
+    anchorStartCheckbox.setAttribute("label", anchorStartCheckbox.getAttribute("labelRegular"));
+    anchorStartCheckbox.accessKey = anchorStartCheckbox.getAttribute("accesskeyRegular");
+    anchorStartCheckbox.flexibleAnchor = false;
+  }
+  disableElement(E("anchorEnd"), /[\*\^]$/.test(pattern) || !testFilter(pattern + "|"), "checked", false);
 
-	updateFilter();
-	setAdvancedMode(document.documentElement.getAttribute("advancedMode") == "true");
+  updateFilter();
+  setAdvancedMode(document.documentElement.getAttribute("advancedMode") == "true");
 }
 
 function updateCustomPattern()
 {
-	E("patternGroup").value = "";
-	updatePatternSelection();
+  E("patternGroup").value = "";
+  updatePatternSelection();
 }
 
 function addFilter() {
-	let filter = Filter.fromText(document.getElementById("filter").value);
-	filter.disabled = false;
+  let filter = Filter.fromText(document.getElementById("filter").value);
+  filter.disabled = false;
 
-	FilterStorage.addFilter(filter);
+  FilterStorage.addFilter(filter);
 
-	if (nodes)
-		Policy.refilterNodes(nodes, item);
+  if (nodes)
+    Policy.refilterNodes(nodes, item);
 
-	return true;
+  return true;
 }
 
 function setAdvancedMode(mode) {
-	advancedMode = mode;
+  advancedMode = mode;
 
-	var dialog = document.documentElement;
-	dialog.setAttribute("advancedMode", advancedMode);
+  var dialog = document.documentElement;
+  dialog.setAttribute("advancedMode", advancedMode);
 
-	var button = dialog.getButton("disclosure");
-	button.setAttribute("label", dialog.getAttribute(advancedMode ? "buttonlabeldisclosure_off" : "buttonlabeldisclosure_on"));
+  var button = dialog.getButton("disclosure");
+  button.setAttribute("label", dialog.getAttribute(advancedMode ? "buttonlabeldisclosure_off" : "buttonlabeldisclosure_on"));
 
-	updateFilter();
+  updateFilter();
 }
 
 function disableElement(element, disable, valueProperty, disabledValue) {
-	if ((element.getAttribute("disabled") == "true") == disable)
-		return;
+  if ((element.getAttribute("disabled") == "true") == disable)
+    return;
 
-	if (disable)
-	{
-		element.setAttribute("disabled", "true");
-		element._abpStoredValue = element[valueProperty];
-		element[valueProperty] = disabledValue;
-	}
-	else
-	{
-		element.removeAttribute("disabled");
-		if ("_abpStoredValue" in element)
-			element[valueProperty] = element._abpStoredValue;
-		delete element._abpStoredValue;
-	}
+  if (disable)
+  {
+    element.setAttribute("disabled", "true");
+    element._abpStoredValue = element[valueProperty];
+    element[valueProperty] = disabledValue;
+  }
+  else
+  {
+    element.removeAttribute("disabled");
+    if ("_abpStoredValue" in element)
+      element[valueProperty] = element._abpStoredValue;
+    delete element._abpStoredValue;
+  }
 }
 
 function openPreferences() {
-	Utils.openFiltersDialog(Filter.fromText(E("filter").value));
+  Utils.openFiltersDialog(Filter.fromText(E("filter").value));
 }
 
 function doEnable() {
-	Prefs.enabled = true;
-	E("disabledWarning").hidden = true;
+  Prefs.enabled = true;
+  E("disabledWarning").hidden = true;
 }
 
 /**
@@ -394,8 +394,8 @@ function doEnable() {
  */
 function selectAllTypes(/**Boolean*/ select)
 {
-	for (let typeNode = E("typeGroup").firstChild; typeNode; typeNode = typeNode.nextSibling)
-		if (typeNode.getAttribute("disabled") != "true")
-			typeNode.checked = select;
-	updateFilter();
+  for (let typeNode = E("typeGroup").firstChild; typeNode; typeNode = typeNode.nextSibling)
+    if (typeNode.getAttribute("disabled") != "true")
+      typeNode.checked = select;
+  updateFilter();
 }

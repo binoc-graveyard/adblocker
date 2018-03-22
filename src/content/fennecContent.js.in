@@ -5,27 +5,27 @@
  */
 
 if (!("@adblockplus.org/abp/policy;1" in Components.classes))
-	Components.utils.import("resource://@ADDON_CHROME_NAME@/modules/ContentPolicyRemote.jsm");
+  Components.utils.import("resource://@ADDON_CHROME_NAME@/modules/ContentPolicyRemote.jsm");
 if (!("@mozilla.org/network/protocol/about;1?what=abp-elemhidehit" in Components.classes))
-	Components.utils.import("resource://@ADDON_CHROME_NAME@/modules/ElemHideRemote.jsm");
+  Components.utils.import("resource://@ADDON_CHROME_NAME@/modules/ElemHideRemote.jsm");
 
 addEventListener("click", function(event)
 {
-	// Ignore right-clicks
-	if (event.button == 2)
-		return;
+  // Ignore right-clicks
+  if (event.button == 2)
+    return;
 
-	// Search the link associated with the click
-	let link = event.target;
-	while (link && !(link instanceof Ci.nsIDOMHTMLAnchorElement))
-		link = link.parentNode;
+  // Search the link associated with the click
+  let link = event.target;
+  while (link && !(link instanceof Ci.nsIDOMHTMLAnchorElement))
+    link = link.parentNode;
 
-	if (!link || !/^abp:\/*subscribe\/*\?(.*)/i.test(link.href))  /**/
-		return;
+  if (!link || !/^abp:\/*subscribe\/*\?(.*)/i.test(link.href))  /**/
+    return;
 
-	// This is our link - make sure the browser doesn't handle it
-	event.preventDefault();
-	event.stopPropagation();
+  // This is our link - make sure the browser doesn't handle it
+  event.preventDefault();
+  event.stopPropagation();
 
-	sendAsyncMessage("AdblockPlus:LinkClick", link.href);
+  sendAsyncMessage("AdblockPlus:LinkClick", link.href);
 }, true);

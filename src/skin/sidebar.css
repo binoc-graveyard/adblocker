@@ -7,47 +7,47 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #suggestionsList {
-	margin: 0px;
+  margin: 0px;
 }
 
 #detachButton, #reattachButton:not([disabled="true"]) {
-	text-decoration: underline;
-	cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 #reattachButton[disabled="true"] {
-	color: GrayText;
+  color: GrayText;
 }
 
 #detachButton, #reattachButton {
-	font-size: 90%;
+  font-size: 90%;
 }
 
 tooltip {
-	max-width: none;
+  max-width: none;
 }
 
 #tooltipPreview {
-	margin:10px;
-	max-width: 300px;
-	max-height: 300px;
+  margin:10px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 #tooltip label {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #contextBlock,
 #contextWhitelist {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #state {
-	min-width: 16px;
+  min-width: 16px;
 }
 
 #size {
-	text-align: end;
+  text-align: end;
 }
 
 /*
@@ -57,43 +57,43 @@ treechildren:-moz-locale-dir(rtl)::-moz-tree-cell(col-filter),
 treechildren:-moz-locale-dir(rtl)::-moz-tree-cell(col-address),
 treechildren:-moz-locale-dir(rtl)::-moz-tree-cell(col-size)
 {
-	direction: ltr;
-	text-align: end;
+  direction: ltr;
+  text-align: end;
 }
 
 .disabledTextLabel
 {
-	font-style: italic;
+  font-style: italic;
 }
 
 treechildren::-moz-tree-cell-text(state-filtered, selected-false),
 treechildren::-moz-tree-cell-text(state-hidden, selected-false) {
-	color: #C00000;
+  color: #C00000;
 }
 treechildren::-moz-tree-cell-text(state-whitelisted, selected-false) {
-	color: #008000;
+  color: #008000;
 }
 
 treechildren::-moz-tree-image(col-state, dummy-false)
 {
-	list-style-image: url(item-state.png);
-	-moz-image-region: rect(0px 10px 10px 0px);
-	-moz-margin-start: 3px;
+  list-style-image: url(item-state.png);
+  -moz-image-region: rect(0px 10px 10px 0px);
+  -moz-margin-start: 3px;
 }
 treechildren::-moz-tree-image(col-state, filter-disabled-true, dummy-false) {
-	-moz-image-region: rect(10px 10px 20px 0px);
+  -moz-image-region: rect(10px 10px 20px 0px);
 }
 treechildren::-moz-tree-image(col-state, state-filtered, dummy-false),
 treechildren::-moz-tree-image(col-state, state-hidden, dummy-false) {
-	-moz-image-region: rect(20px 10px 30px 0px);
+  -moz-image-region: rect(20px 10px 30px 0px);
 }
 treechildren::-moz-tree-image(col-state, state-whitelisted, dummy-false) {
-	-moz-image-region: rect(30px 10px 40px 0px);
+  -moz-image-region: rect(30px 10px 40px 0px);
 }
 
 treechildren::-moz-tree-cell-text(col-filter, state-hidden, selected-false) {
-	color: #000080;
+  color: #000080;
 }
 treechildren::-moz-tree-cell-text(col-filter, filter-disabled-true, selected-false) {
-	color: #C0C0C0;
+  color: #C0C0C0;
 }

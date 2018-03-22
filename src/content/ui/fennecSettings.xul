@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <!-- This Source Code is subject to the terms of the Mozilla Public License
-	 - version 2.0 (the "License"). You can obtain a copy of the License at
-	 - http://mozilla.org/MPL/2.0/. -->
+   - version 2.0 (the "License"). You can obtain a copy of the License at
+   - http://mozilla.org/MPL/2.0/. -->
 
 <!DOCTYPE vbox [
 <!ENTITY % overlayDTD SYSTEM "chrome://adblockplus/locale/overlay.dtd">
@@ -12,9 +12,9 @@
 ]>
 
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<setting pref="extensions.adblockplus.enabled" type="bool" inverted="true" title="&disable.label;"/>
-	<setting type="control" title="&subscriptions.tab.label;">
-		<menulist id="adblockplus-subscription-list"/>
-	</setting>
-<!--	<setting id="adblockplus-sync" type="bool" title="&sync.label;"/> -->
+  <setting pref="extensions.adblockplus.enabled" type="bool" inverted="true" title="&disable.label;"/>
+  <setting type="control" title="&subscriptions.tab.label;">
+    <menulist id="adblockplus-subscription-list"/>
+  </setting>
+<!--  <setting id="adblockplus-sync" type="bool" title="&sync.label;"/> -->
 </vbox>

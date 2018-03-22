@@ -13,54 +13,54 @@
 .suggestion > .radio-label-box:-moz-locale-dir(rtl),
 html|*.textbox-input:-moz-locale-dir(rtl)
 {
-	direction: ltr;
-	text-align: end;
+  direction: ltr;
+  text-align: end;
 }
 
 #patternGroup {
-	overflow: auto;
+  overflow: auto;
 }
 
 #anchorGroup {
-	padding-left: 20px;
+  padding-left: 20px;
 }
 
 #typeGroupLabel {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #typeGroup {
-	overflow: auto;
-	margin-bottom: 10px
+  overflow: auto;
+  margin-bottom: 10px
 }
 
 :root:not([advancedMode="true"]) #options {
-	display: none;
+  display: none;
 }
 
 #disabledWarning, #groupDisabledWarning, #regexpWarning, #shortpatternWarning, #matchWarning {
-	color: #E00000;
+  color: #E00000;
 }
 
 #disabledWarning > *, #groupDisabledWarning > * {
-	margin: 0px;
-	font-size: inherit;
+  margin: 0px;
+  font-size: inherit;
 }
 
 .text-link {
-	font-size: 80%;
-	-moz-user-focus: ignore;
+  font-size: 80%;
+  -moz-user-focus: ignore;
 }
 
 .help {
-	color: #0000E0;
-	border-bottom: 1px dotted #0000E0;
-	cursor: help;
-	margin: 0px;
-	padding: 0px;
+  color: #0000E0;
+  border-bottom: 1px dotted #0000E0;
+  cursor: help;
+  margin: 0px;
+  padding: 0px;
 }
 
 tooltip {
-	/* Gecko 1.8.1 doesn't support multiline tooltips :-( */
-	max-width: none;
+  /* Gecko 1.8.1 doesn't support multiline tooltips :-( */
+  max-width: none;
 }
