@@ -1171,7 +1171,6 @@ WindowWrapper.prototype =
     this.E(prefix + "showinstatusbar").hidden = !hasStatusBar;
     this.E(prefix + "iconSettingsSeparator").hidden = this.E(prefix + "showintoolbar").hidden && this.E(prefix + "showinstatusbar").hidden;
 
-    this.E(prefix + "showinaddonbar").setAttribute("checked", this.isToolbarIconVisible());
     this.E(prefix + "showintoolbar").setAttribute("checked", this.isToolbarIconVisible());
     this.E(prefix + "showinstatusbar").setAttribute("checked", Prefs.showinstatusbar);
   
@@ -1531,12 +1530,6 @@ function initOptionsDoc(/**Document*/ doc)
 
   function initCheckboxes()
   {
-    if (!("value" in E("@ADDON_CHROME_NAME@-showinaddonbar")))
-    {
-      // XBL bindings didn't apply yet (bug 708397), try later
-      Utils.runAsync(initCheckboxes);
-      return;
-    }
 
     E("@ADDON_CHROME_NAME@-savestats").value = Prefs.savestats;
     E("@ADDON_CHROME_NAME@-savestats").addEventListener("command", function()
@@ -1553,16 +1546,13 @@ function initOptionsDoc(/**Document*/ doc)
 
     if (wrapper)
     {
-      E("@ADDON_CHROME_NAME@-showinaddonbar").value =
-        E("@ADDON_CHROME_NAME@-showintoolbar").value =
-        wrapper.isToolbarIconVisible();
+      E("@ADDON_CHROME_NAME@-showintoolbar").value =
+      wrapper.isToolbarIconVisible();
       let handler = function()
       {
-        E("@ADDON_CHROME_NAME@-showinaddonbar").value =
-          E("@ADDON_CHROME_NAME@-showintoolbar").value =
-          AppIntegration.toggleToolbarIcon();
+        E("@ADDON_CHROME_NAME@-showintoolbar").value =
+        AppIntegration.toggleToolbarIcon();
       };
-      E("@ADDON_CHROME_NAME@-showinaddonbar").addEventListener("command", handler, false);
       E("@ADDON_CHROME_NAME@-showintoolbar").addEventListener("command", handler, false);
     }
   }
