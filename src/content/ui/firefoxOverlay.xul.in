@@ -14,30 +14,11 @@
 		<commandset id="abp-commandset"/>
 		<box id="abp-hooks"
 			getBrowser="return this.window.gBrowser;"
-			addTab="
-				if (arguments[1] &amp;&amp; 'openNewTabWith' in this.window)
-					this.window.openNewTabWith(arguments[0], this.window.content.document, null, arguments[1], false);
-				else
-					this.window.gBrowser.loadOneTab(arguments[0], null, null, null, false);"
-			getContextMenu="return this.E('contentAreaContextMenu');"
-			getToolbox="return this.E('navigator-toolbox')"
-			getDefaultToolbar="return this.E('addon-bar') || this.E('nav-bar');"
-			toolbarInsertBefore="return this.E('addonbar-closebutton');"
-			hasAddonBar="return this.E('addon-bar')"/>
-	</window>
-
-	<!-- Songbird window -->
-	<sb-support id="mainSupportSet">
-		<popupset id="abp-popupset"/>
-		<keyset id="abp-keyset"/>
-		<commandset id="abp-commandset"/>
-		<box id="abp-hooks"
-			getBrowser="return this.window.gBrowser;"
 			addTab="this.window.gBrowser.loadOneTab(arguments[0], null, null, null, false);"
 			getContextMenu="return this.E('contentAreaContextMenu');"
 			getToolbox="return this.E('navigator-toolbox')"
 			getDefaultToolbar="return this.E('nav-bar');"/>
-	</sb-support>
+	</window>
 
 	<!-- Status bar -->
 	<statusbar id="status-bar">

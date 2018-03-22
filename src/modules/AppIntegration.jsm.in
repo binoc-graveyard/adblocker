@@ -340,7 +340,7 @@ WindowWrapper.prototype =
 	 * Methods that can be defined at attributes of the hooks element.
 	 * @type Array of String
 	 */
-	customMethods: ["getBrowser", "addTab", "getContextMenu", "getToolbox", "getDefaultToolbar", "toolbarInsertBefore", "hasAddonBar"],
+	customMethods: ["getBrowser", "addTab", "getContextMenu", "getToolbox", "getDefaultToolbar", "toolbarInsertBefore"],
 
 	/**
 	 * Progress listener used to watch for location changes, if any.
@@ -608,7 +608,7 @@ WindowWrapper.prototype =
 				return;
 	
 			if (element.tagName == "statusbarpanel")
-				element.hidden = !Prefs.showinstatusbar || (this.hasAddonBar && this.hasAddonBar());
+				element.hidden = !Prefs.showinstatusbar;
 			else
 			{
 				if (element.hasAttribute("context") && Prefs.defaulttoolbaraction == 0)
@@ -1166,12 +1166,10 @@ WindowWrapper.prototype =
 		this.E(prefix + "savestats").setAttribute("checked", Prefs.savestats);
 
 		let hasToolbar = this.getDefaultToolbar && this.getDefaultToolbar();
-		let hasAddonBar = this.hasAddonBar && this.hasAddonBar();
 		let hasStatusBar = this.E("abp-status");
-		this.E(prefix + "showinaddonbar").hidden = !hasAddonBar || prefix == "abp-toolbar-";
-		this.E(prefix + "showintoolbar").hidden = !hasToolbar || hasAddonBar || prefix == "abp-toolbar-";
-		this.E(prefix + "showinstatusbar").hidden = !hasStatusBar || hasAddonBar;
-		this.E(prefix + "iconSettingsSeparator").hidden = this.E(prefix + "showinaddonbar").hidden && this.E(prefix + "showintoolbar").hidden && this.E(prefix + "showinstatusbar").hidden;
+		this.E(prefix + "showintoolbar").hidden = !hasToolbar || prefix == "abp-toolbar-";
+		this.E(prefix + "showinstatusbar").hidden = !hasStatusBar;
+		this.E(prefix + "iconSettingsSeparator").hidden = this.E(prefix + "showintoolbar").hidden && this.E(prefix + "showinstatusbar").hidden;
 
 		this.E(prefix + "showinaddonbar").setAttribute("checked", this.isToolbarIconVisible());
 		this.E(prefix + "showintoolbar").setAttribute("checked", this.isToolbarIconVisible());
@@ -1523,15 +1521,13 @@ function initOptionsDoc(/**Document*/ doc)
 
 	let wrapper = wrappers.length ? wrappers[0] : null;
 	let hasToolbar = wrapper && wrapper.getDefaultToolbar && wrapper.getDefaultToolbar();
-	let hasAddonBar = wrapper && wrapper.hasAddonBar && wrapper.hasAddonBar();
 	let hasStatusBar = wrapper && wrapper.E("abp-status");
 
 	let syncEngine = Sync.getEngine();
 	E("@ADDON_CHROME_NAME@-sync").collapsed = !syncEngine;
 
-	E("@ADDON_CHROME_NAME@-showinaddonbar").collapsed = !hasAddonBar;
-	E("@ADDON_CHROME_NAME@-showintoolbar").collapsed = !hasToolbar || hasAddonBar;
-	E("@ADDON_CHROME_NAME@-showinstatusbar").collapsed = !hasStatusBar || hasAddonBar;
+	E("@ADDON_CHROME_NAME@-showintoolbar").collapsed = !hasToolbar;
+	E("@ADDON_CHROME_NAME@-showinstatusbar").collapsed = !hasStatusBar;
 
 	function initCheckboxes()
 	{
