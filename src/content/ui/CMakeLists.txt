@@ -21,20 +21,9 @@ set(SRC_XML_FILES
     ${mk_srcdir}/subscriptions.xml
 )
 
-set(SRC_XUL_FILES
-    ${mk_srcdir}/fennecNativeOverlay.xul
-    ${mk_srcdir}/fennecOverlay.xul
-    ${mk_srcdir}/fennecSettings.xul
-    ${mk_srcdir}/fennecSubscription.xul
-    ${mk_srcdir}/mailOverlay.xul
-    ${mk_srcdir}/seamonkeyOverlay.xul
-    ${mk_srcdir}/thunderbirdOverlay.xul
-)
-
 set(SOURCE_FILES
     ${SRC_JS_FILES}
     ${SRC_XML_FILES}
-    ${SRC_XUL_FILES}
 )
 
 COPY_TO_DIST("${SOURCE_FILES}")

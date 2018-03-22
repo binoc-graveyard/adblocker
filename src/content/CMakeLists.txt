@@ -16,10 +16,4 @@ set(SOURCE_FILES
 
 COPY_TO_DIST("${SOURCE_FILES}")
 
-set(SOURCE_PP_FILES
-    fennecContent.js.in
-)
-
-COMMON_PREPROCESS("${SOURCE_PP_FILES}")
-
 add_subdirectory(ui)

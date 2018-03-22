@@ -273,46 +273,33 @@ function WindowWrapper(window, hooks)
   this.initializeHooks(hooks);
   TimeLine.log("Hooks element initialized")
 
-  if (!Utils.isFennec)
+  this.fixupMenus();
+  TimeLine.log("Context menu copying done")
+
+  this.configureKeys();
+  TimeLine.log("Shortcut keys configured")
+
+  this.initContextMenu();
+  TimeLine.log("Context menu initialized")
+
+  let browser = this.getBrowser();
+  if (browser && browser.currentURI)
   {
-    this.fixupMenus();
-    TimeLine.log("Context menu copying done")
-
-    this.configureKeys();
-    TimeLine.log("Shortcut keys configured")
-
-    this.initContextMenu();
-    TimeLine.log("Context menu initialized")
-
-    let browser = this.getBrowser();
-    if (browser && browser.currentURI)
-    {
-      this.updateState();
-    }
-    else
-    {
-      // Update state asynchronously, the Thunderbird window won't be initialized yet for non-default window layouts
-      Utils.runAsync(this.updateState, this);
-    }
-    TimeLine.log("Icon state updated")
-
-    // Some people actually switch off browser.frames.enabled and are surprised
-    // that things stop working...
-    window.QueryInterface(Ci.nsIInterfaceRequestor)
-          .getInterface(Ci.nsIWebNavigation)
-          .QueryInterface(Ci.nsIDocShell)
-          .allowSubframes = true;
+    this.updateState();
   }
-
-  // Custom initialization for Fennec
-  if (Utils.isFennec)
+  else
   {
-    if ("BrowserApp" in this.window)
-      Cu.import(baseURL + "AppIntegrationFennecNative.jsm");
-    else
-      Cu.import(baseURL + "AppIntegrationFennec.jsm");
-    AppIntegrationFennec.initWindow(this);
+    // Update state asynchronously, the Thunderbird window won't be initialized yet for non-default window layouts
+    Utils.runAsync(this.updateState, this);
   }
+  TimeLine.log("Icon state updated")
+
+  // Some people actually switch off browser.frames.enabled and are surprised
+  // that things stop working...
+  window.QueryInterface(Ci.nsIInterfaceRequestor)
+        .getInterface(Ci.nsIWebNavigation)
+        .QueryInterface(Ci.nsIDocShell)
+        .allowSubframes = true;
 
   this.registerEventListeners();
   TimeLine.log("Added event listeners")
@@ -987,18 +974,10 @@ WindowWrapper.prototype =
     }
   
     // Open dialog
-    if (!Utils.isFennec)
-    {
-      let subscription = {url: url, title: title, disabled: false, external: false,
-                          mainSubscriptionTitle: mainSubscriptionTitle, mainSubscriptionURL: mainSubscriptionURL};
-      this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/subscriptionSelection.xul", "_blank",
-                             "chrome,centerscreen,resizable,dialog=no", subscription, null);
-    }
-    else
-    {
-      // Special handling for Fennec
-      AppIntegrationFennec.openFennecSubscriptionDialog(this, url, title);
-    }
+    let subscription = {url: url, title: title, disabled: false, external: false,
+                        mainSubscriptionTitle: mainSubscriptionTitle, mainSubscriptionURL: mainSubscriptionURL};
+    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/ui/subscriptionSelection.xul", "_blank",
+                           "chrome,centerscreen,resizable,dialog=no", subscription, null);
   },
 
   /**
