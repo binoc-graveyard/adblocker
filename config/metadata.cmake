@@ -1,6 +1,6 @@
 # Preprocessor Metadata
 set(ADDON_ID "abprime@projects.binaryoutcast.com")
-set(ADDON_VERSION "1.0.5")
+set(ADDON_VERSION "1.0.6a1")
 set(ADDON_NAME "ABPrime")
 set(ADDON_XPI_NAME "abprime")
 set(ADDON_SHORT_DESC "Bootstrapped adblocking is yesterday!")
