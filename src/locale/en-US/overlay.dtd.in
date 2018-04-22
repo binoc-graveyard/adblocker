@@ -4,7 +4,7 @@
 
 <!ENTITY menuitem.label         "@ADDON_NAME@ Preferences">
 <!ENTITY menuitem.accesskey     "b">
-<!ENTITY toolbarbutton.label    "ABL">
+<!ENTITY toolbarbutton.label    "@ADDON_NAME@">
 <!ENTITY toolsmenu.label        "@ADDON_NAME@">
 
 <!ENTITY context.image.label    "@ADDON_NAME@: Block image">
