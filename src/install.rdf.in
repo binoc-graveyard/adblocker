@@ -35,5 +35,13 @@
       </Description>
     </em:targetApplication>
 #endif
+    <em:targetApplication>
+      <Description>
+        <!-- Borealis (Navigator) -->
+        <em:id>{a3210b97-8e8a-4737-9aa0-aa0e607640b9}</em:id>
+        <em:minVersion>1.0.0a1</em:minVersion>
+        <em:maxVersion>2.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
   </Description>
 </RDF>

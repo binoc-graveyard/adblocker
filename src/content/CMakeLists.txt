@@ -43,7 +43,8 @@ set(SOURCE_PP_FILES
     about.xul.in
     composer.xul.in
     filters.xul.in
-    firefoxOverlay.xul.in
+    phoenixOverlay.xul.in
+    navigatorOverlay.xul.in
     firstRun.xul.in
     overlay.js.in
     overlayGeneral.xul.in
