@@ -31,13 +31,13 @@ Cu.import(baseURL + "RequestNotifier.jsm");
  * List of explicitly supported content types
  * @type Array of String
  */
-const contentTypes = ["OTHER", "SCRIPT", "IMAGE", "STYLESHEET", "OBJECT", "SUBDOCUMENT", "DOCUMENT", "XMLHTTPREQUEST", "OBJECT_SUBREQUEST", "FONT", "MEDIA", "WEBSOCKET", "WEBRTC"];
+const contentTypes = ["OTHER", "SCRIPT", "IMAGE", "STYLESHEET", "OBJECT", "SUBDOCUMENT", "DOCUMENT", "XMLHTTPREQUEST", "OBJECT_SUBREQUEST", "FONT", "MEDIA", "WEBSOCKET", "WEBRTC", "CSP"];
 
 /**
  * List of content types that aren't associated with a visual document area
  * @type Array of String
  */
-const nonVisualTypes = ["SCRIPT", "STYLESHEET", "XMLHTTPREQUEST", "OBJECT_SUBREQUEST", "FONT", "WEBSOCKET", "WEBRTC"];
+const nonVisualTypes = ["SCRIPT", "STYLESHEET", "XMLHTTPREQUEST", "OBJECT_SUBREQUEST", "FONT", "WEBSOCKET", "WEBRTC", "CSP"];
 
 /**
  * Public policy checking functions and auxiliary objects
