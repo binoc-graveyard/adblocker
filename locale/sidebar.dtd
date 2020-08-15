@@ -1,6 +1,6 @@
 #filter substitution
 
-<!ENTITY detached.title           "@ADDON_NAME@: Blockable items (detached)">
+<!ENTITY detached.title           "@BINOC_ADDON_NAME@: Blockable items (detached)">
 
 <!ENTITY detach.label             "Detach">
 <!ENTITY reattach.label           "Reattach">

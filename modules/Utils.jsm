@@ -34,7 +34,7 @@ var Utils =
    */
   get addonID()
   {
-    return "@ADDON_ID@";
+    return "@BINOC_ADDON_ID@";
   },
 
   /**
@@ -42,7 +42,7 @@ var Utils =
    */
   get addonVersion()
   {
-    let version = "@ADDON_VERSION@";
+    let version = "@BINOC_ADDON_VERSION@";
     return (version[0] == "{" ? "99.9" : version);
   },
 
@@ -84,7 +84,7 @@ var Utils =
     let locale = "en-US";
     try
     {
-      locale = Utils.chromeRegistry.getSelectedLocale("@ADDON_CHROME_NAME@");
+      locale = Utils.chromeRegistry.getSelectedLocale("adblocker");
     }
     catch (e)
     {
@@ -112,7 +112,7 @@ var Utils =
    */
   getString: function(name)
   {
-    let stringBundle = Services.strings.createBundle("chrome://@ADDON_CHROME_NAME@/locale/global.properties");
+    let stringBundle = Services.strings.createBundle("chrome://adblocker/locale/global.properties");
     Utils.getString = function(name)
     {
       return stringBundle.GetStringFromName(name);
@@ -304,7 +304,7 @@ var Utils =
     }
     else
     {
-      Utils.windowWatcher.openWindow(null, "chrome://@ADDON_CHROME_NAME@/content/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
+      Utils.windowWatcher.openWindow(null, "chrome://adblocker/content/filters.xul", "_blank", "chrome,centerscreen,resizable,dialog=no", {wrappedJSObject: filter});
     }
   },
 
@@ -354,7 +354,7 @@ var Utils =
    */
   loadDocLink: function(/**String*/ linkID)
   {
-    let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+    let baseURL = "resource://adblocker/modules/";
     Cu.import(baseURL + "Prefs.jsm");
 
     let link = Prefs.documentation_link.replace(/%LINK%/g, linkID).replace(/%LANG%/g, Utils.appLocale);

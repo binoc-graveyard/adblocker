@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Element hiding implementation.
  */
@@ -17,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "IO.jsm");

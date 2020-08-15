@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 {
   let Cc = Components.classes;
   let Ci = Components.interfaces;
@@ -13,7 +11,7 @@
   let Cu = Components.utils;
 
   // Use UIReady event to initialize in Fennec (bug 531071)
-  let eventName = Cu.import("resource://@ADDON_CHROME_NAME@/modules/Utils.jsm", null).Utils.isFennec ? "UIReady" : "load";
+  let eventName = Cu.import("resource://adblocker/modules/Utils.jsm", null).Utils.isFennec ? "UIReady" : "load";
 
   window.addEventListener(eventName, function()
   {
@@ -22,9 +20,9 @@
     if (!("@adblockplus.org/abp/public;1" in Cc))
     {
       // Force initialization (in Fennec we won't be initialized at this point)
-      Cu.import("resource://@ADDON_CHROME_NAME@/modules/Bootstrap.jsm", null).Bootstrap.startup();
+      Cu.import("resource://adblocker/modules/Bootstrap.jsm", null).Bootstrap.startup();
     }
 
-    Cu.import("resource://@ADDON_CHROME_NAME@/modules/AppIntegration.jsm", null).AppIntegration.addWindow(window);
+    Cu.import("resource://adblocker/modules/AppIntegration.jsm", null).AppIntegration.addWindow(window);
   }, false);
 }

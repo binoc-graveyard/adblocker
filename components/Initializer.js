@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
@@ -58,14 +56,14 @@ Initializer.prototype =
           try
           {
             // Gecko 2.0 and higher - chrome URLs can be loaded directly
-            Cu.import("resource://@ADDON_CHROME_NAME@/modules/Bootstrap.jsm");
+            Cu.import("resource://adblocker/modules/Bootstrap.jsm");
           }
           catch (e)
           {
             // Gecko 1.9.x - have to convert chrome URLs to file URLs first
             let chromeRegistry = Cc["@mozilla.org/chrome/chrome-registry;1"].getService(Ci.nsIChromeRegistry);
             let ioService = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
-            let bootstrapURL = chromeRegistry.convertChromeURL(ioService.newURI("resource://@ADDON_CHROME_NAME@/modules/Bootstrap.jsm", null, null));
+            let bootstrapURL = chromeRegistry.convertChromeURL(ioService.newURI("resource://adblocker/modules/Bootstrap.jsm", null, null));
             Cu.import(bootstrapURL.spec);
           }
           Bootstrap.startup();

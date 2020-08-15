@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Content policy to be loaded in the content process for a multi-process setup (currently only Fennec)
  */
@@ -19,7 +17,7 @@ const Cu = Components.utils;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://@ADDON_CHROME_NAME@/modules/Utils.jsm");
+Cu.import("resource://adblocker/modules/Utils.jsm");
 
 /**
  * nsIContentPolicy and nsIChannelEventSink implementation

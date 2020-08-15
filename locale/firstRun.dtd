@@ -1,9 +1,9 @@
 #filter substitution
 
-<!ENTITY dialog.title               "@ADDON_NAME@ installation complete">
+<!ENTITY dialog.title               "@BINOC_ADDON_NAME@ installation complete">
 
 <!ENTITY confirmation               "
-  Thank you for installing @ADDON_NAME@. Ads will be blocked from now on.
+  Thank you for installing @BINOC_ADDON_NAME@. Ads will be blocked from now on.
   Enjoy!">
 
 <!ENTITY advancedSection            "Advanced options">
@@ -16,7 +16,7 @@
 <!ENTITY visitHomepage.label        "Visit list home page">
 
 <!ENTITY acceptableAds2             "
-  @ADDON_NAME@ has also been configured to allow some non-intrusive advertising.
+  @BINOC_ADDON_NAME@ has also been configured to allow some non-intrusive advertising.
 ">
 
 <!ENTITY viewList.label             "View list">

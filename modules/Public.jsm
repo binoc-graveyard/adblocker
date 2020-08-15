@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Public Adblock Plus API.
  */
@@ -17,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "FilterStorage.jsm");
 Cu.import(baseURL + "FilterClasses.jsm");

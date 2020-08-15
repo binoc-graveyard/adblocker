@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 try
 {
   Cu.import("resource://gre/modules/AddonManager.jsm");
@@ -126,7 +124,7 @@ function setExtensionData(name, version, homepage, authors, contributors, transl
   E("translators").textContent = translators.join(", ");
 
   let request = new XMLHttpRequest();
-  request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/subscriptions.xml");
+  request.open("GET", "chrome://adblocker/content/subscriptions.xml");
   request.addEventListener("load", setSubscriptionAuthors, false);
   request.send(null);
 }

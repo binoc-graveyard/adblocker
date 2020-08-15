@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Module containing a bunch of utility functions.
  */
@@ -20,7 +18,7 @@ const Cu = Components.utils;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "FilterStorage.jsm");
 Cu.import(baseURL + "SubscriptionClasses.jsm");

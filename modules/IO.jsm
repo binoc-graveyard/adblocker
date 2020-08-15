@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Module containing file I/O helpers.
  */
@@ -22,7 +20,7 @@ Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/FileUtils.jsm");
 Cu.import("resource://gre/modules/NetUtil.jsm");
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import(baseURL + "TimeLine.jsm");
 
 var IO =

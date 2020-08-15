@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Application integration module, will keep track of application
  * windows and handle the necessary events.
@@ -18,7 +16,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import(baseURL + "TimeLine.jsm");
@@ -978,7 +976,7 @@ WindowWrapper.prototype =
     // Open dialog
     let subscription = {url: url, title: title, disabled: false, external: false,
                         mainSubscriptionTitle: mainSubscriptionTitle, mainSubscriptionURL: mainSubscriptionURL};
-    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/subscriptionSelection.xul", "_blank",
+    this.window.openDialog("chrome://adblocker/content/subscriptionSelection.xul", "_blank",
                            "chrome,centerscreen,resizable,dialog=no", subscription, null);
   },
 
@@ -1177,7 +1175,7 @@ WindowWrapper.prototype =
     if (wnd)
       wnd.focus();
     else
-      this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
+      this.window.openDialog("chrome://adblocker/content/sendReport.xul", "_blank", "chrome,centerscreen,resizable=no", this.window.content, this.getCurrentLocation());
   },
 
   /**
@@ -1231,13 +1229,13 @@ WindowWrapper.prototype =
       if (sidebar && (!Prefs.detachsidebar || !sidebar.hidden))
       {
         this.E("abp-sidebar-splitter").hidden = !sidebar.hidden;
-        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://@ADDON_CHROME_NAME@/content/sidebar.xul" : "about:blank");
+        this.E("abp-sidebar-browser").setAttribute("src", sidebar.hidden ? "chrome://adblocker/content/sidebar.xul" : "about:blank");
         sidebar.hidden = !sidebar.hidden;
         if (sidebar.hidden)
           this.getBrowser().contentWindow.focus();
       }
       else
-        this.detachedSidebar = this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
+        this.detachedSidebar = this.window.openDialog("chrome://adblocker/content/sidebarDetached.xul", "_blank", "chrome,resizable,dependent,dialog=no");
     }
   },
 
@@ -1442,7 +1440,7 @@ WindowWrapper.prototype =
     if (!item)
       return;
 
-    this.window.openDialog("chrome://@ADDON_CHROME_NAME@/content/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
+    this.window.openDialog("chrome://adblocker/content/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", [node], item);
   }
 };
 
@@ -1497,44 +1495,44 @@ function initOptionsDoc(/**Document*/ doc)
 {
   function E(id) doc.getElementById(id);
 
-  E("@ADDON_CHROME_NAME@-filters").addEventListener("command", Utils.openFiltersDialog, false);
+  E("abprime-filters").addEventListener("command", Utils.openFiltersDialog, false);
 
   let wrapper = wrappers.length ? wrappers[0] : null;
   let hasToolbar = wrapper && wrapper.getDefaultToolbar && wrapper.getDefaultToolbar();
   let hasStatusBar = wrapper && wrapper.E("abp-status");
 
   let syncEngine = Sync.getEngine();
-  E("@ADDON_CHROME_NAME@-sync").collapsed = !syncEngine;
+  E("abprime-sync").collapsed = !syncEngine;
 
-  E("@ADDON_CHROME_NAME@-showintoolbar").collapsed = !hasToolbar;
-  E("@ADDON_CHROME_NAME@-showinstatusbar").collapsed = !hasStatusBar;
+  E("abprime-showintoolbar").collapsed = !hasToolbar;
+  E("abprime-showinstatusbar").collapsed = !hasStatusBar;
 
   function initCheckboxes()
   {
 
-    E("@ADDON_CHROME_NAME@-savestats").value = Prefs.savestats;
-    E("@ADDON_CHROME_NAME@-savestats").addEventListener("command", function()
+    E("abprime-savestats").value = Prefs.savestats;
+    E("abprime-savestats").addEventListener("command", function()
     {
       wrapper.toggleSaveStats.call({window: doc.defaultView});
-      E("@ADDON_CHROME_NAME@-savestats").value = Prefs.savestats;
+      E("abprime-savestats").value = Prefs.savestats;
     }, false);
 
-    E("@ADDON_CHROME_NAME@-sync").value = syncEngine && syncEngine.enabled;
-    E("@ADDON_CHROME_NAME@-sync").addEventListener("command", function()
+    E("abprime-sync").value = syncEngine && syncEngine.enabled;
+    E("abprime-sync").addEventListener("command", function()
     {
-      E("@ADDON_CHROME_NAME@-sync").value = AppIntegration.toggleSync();
+      E("abprime-sync").value = AppIntegration.toggleSync();
     }, false);
 
     if (wrapper)
     {
-      E("@ADDON_CHROME_NAME@-showintoolbar").value =
+      E("abprime-showintoolbar").value =
       wrapper.isToolbarIconVisible();
       let handler = function()
       {
-        E("@ADDON_CHROME_NAME@-showintoolbar").value =
+        E("abprime-showintoolbar").value =
         AppIntegration.toggleToolbarIcon();
       };
-      E("@ADDON_CHROME_NAME@-showintoolbar").addEventListener("command", handler, false);
+      E("abprime-showintoolbar").addEventListener("command", handler, false);
     }
   }
   initCheckboxes();
@@ -1613,12 +1611,12 @@ function addSubscription()
     let wrapper = (wrappers.length ? wrappers[0] : null);
     if (wrapper && wrapper.addTab)
     {
-      wrapper.addTab("chrome://@ADDON_CHROME_NAME@/content/firstRun.xul");
+      wrapper.addTab("chrome://adblocker/content/firstRun.xul");
     }
     else
     {
       Utils.windowWatcher.openWindow(wrapper ? wrapper.window : null,
-                                     "chrome://@ADDON_CHROME_NAME@/content/firstRun.xul",
+                                     "chrome://adblocker/content/firstRun.xul",
                                      "_blank", "chrome,centerscreen,resizable,dialog=no", null);
     }
   }
@@ -1627,7 +1625,7 @@ function addSubscription()
   {
     // Load subscriptions data
     let request = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-    request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/subscriptions.xml");
+    request.open("GET", "chrome://adblocker/content/subscriptions.xml");
     request.addEventListener("load", function()
     {
       let node = Utils.chooseFilterSubscription(request.responseXML.getElementsByTagName("subscription"));

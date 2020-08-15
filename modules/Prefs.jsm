@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Manages Adblock Plus preferences.
  */
@@ -17,13 +15,13 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import(baseURL + "TimeLine.jsm");
 Cu.import(baseURL + "Utils.jsm");
 
-const prefRoot = "extensions.@ADDON_CHROME_NAME@.";
+const prefRoot = "extensions.abprime.";
 
 /**
  * Will be set to true if Adblock Plus is scheduled to be uninstalled on

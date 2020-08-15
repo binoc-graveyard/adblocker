@@ -1,0 +1,48 @@
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+EXTRA_COMPONENTS += ['components/Initializer.js']
+
+EXTRA_JS_MODULES += [
+    'modules/AppIntegration.jsm',
+    'modules/Bootstrap.jsm',
+    'modules/ContentPolicy.jsm',
+    'modules/ContentPolicyRemote.jsm',
+    'modules/ElemHide.jsm',
+    'modules/ElemHideRemote.jsm',
+    'modules/FilterClasses.jsm',
+    'modules/FilterListener.jsm',
+    'modules/FilterNotifier.jsm',
+    'modules/FilterStorage.jsm',
+    'modules/IO.jsm',
+    'modules/Matcher.jsm',
+    'modules/ObjectTabs.jsm',
+    'modules/Prefs.jsm',
+    'modules/Public.jsm',
+    'modules/RequestNotifier.jsm',
+    'modules/SubscriptionClasses.jsm',
+    'modules/Sync.jsm',
+    'modules/Synchronizer.jsm',
+    'modules/TimeLine.jsm',
+]
+
+EXTRA_PP_JS_MODULES += ['modules/Utils.jsm']
+
+FINAL_TARGET_FILES += [
+  'icon.png',
+  'icon64.png',
+]
+
+FINAL_TARGET_PP_FILES += ['install.rdf']
+
+FINAL_TARGET_FILES.defaults += ['defaults/patterns.ini']
+
+FINAL_TARGET_FILES.defaults.preferences += ['defaults/preferences/adblockplus.js']
+
+NO_JS_MANIFEST = True
+
+USE_EXTENSION_MANIFEST = True
+
+JAR_MANIFESTS += ['jar.mn']

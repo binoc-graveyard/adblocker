@@ -4,16 +4,16 @@
 <!ENTITY blocked.tooltip        "Blocked items on this page:">
 <!ENTITY filters.tooltip        "Most active filters:">
 
-<!ENTITY menuitem.label         "@ADDON_NAME@ Preferences">
+<!ENTITY menuitem.label         "@BINOC_ADDON_NAME@ Preferences">
 <!ENTITY menuitem.accesskey     "b">
-<!ENTITY toolbarbutton.label    "@ADDON_NAME@">
-<!ENTITY toolsmenu.label        "@ADDON_NAME@">
+<!ENTITY toolbarbutton.label    "@BINOC_ADDON_NAME@">
+<!ENTITY toolsmenu.label        "@BINOC_ADDON_NAME@">
 
-<!ENTITY context.image.label    "@ADDON_NAME@: Block image">
-<!ENTITY context.object.label   "@ADDON_NAME@: Block object">
-<!ENTITY context.frame.label    "@ADDON_NAME@: Block frame">
-<!ENTITY context.media.label    "@ADDON_NAME@: Block audio/video">
-<!ENTITY context.removeWhitelist.label  "@ADDON_NAME@: Re-enable on this page">
+<!ENTITY context.image.label    "@BINOC_ADDON_NAME@: Block image">
+<!ENTITY context.object.label   "@BINOC_ADDON_NAME@: Block object">
+<!ENTITY context.frame.label    "@BINOC_ADDON_NAME@: Block frame">
+<!ENTITY context.media.label    "@BINOC_ADDON_NAME@: Block audio/video">
+<!ENTITY context.removeWhitelist.label  "@BINOC_ADDON_NAME@: Re-enable on this page">
 
 <!ENTITY sidebar.title          "Blockable items on current page">
 
@@ -33,7 +33,7 @@
 <!ENTITY disable.label          "Disable everywhere">
 <!ENTITY options.label          "Options">
 <!ENTITY options.accesskey      "O">
-<!ENTITY contribute.label       "Contribute to @ADDON_NAME@">
+<!ENTITY contribute.label       "Contribute to @BINOC_ADDON_NAME@">
 
 <!ENTITY showintoolbar.label        "Show in toolbar">
 <!ENTITY showintoolbar.accesskey    "b">
@@ -47,8 +47,8 @@
 <!ENTITY hideplaceholders.accesskey "l">
 <!ENTITY counthits.label            "Count filter hits">
 <!ENTITY counthits.accesskey        "h">
-<!ENTITY sync.label                 "Sync @ADDON_NAME@ settings">
+<!ENTITY sync.label                 "Sync @BINOC_ADDON_NAME@ settings">
 <!ENTITY sync.accesskey             "c">
 
 <!ENTITY objecttab.title        "Block">
-<!ENTITY objecttab.tooltip      "Click here to block this object with @ADDON_NAME@">
+<!ENTITY objecttab.tooltip      "Click here to block this object with @BINOC_ADDON_NAME@">

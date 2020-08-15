@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 // Main browser window
@@ -438,7 +436,7 @@ function doBlock() {
   if (filter && filter instanceof WhitelistFilter)
     return;
 
-  openDialog("chrome://@ADDON_CHROME_NAME@/content/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", item.nodes, item.orig);
+  openDialog("chrome://adblocker/content/composer.xul", "_blank", "chrome,centerscreen,resizable,dialog=no,dependent", item.nodes, item.orig);
 }
 
 function editFilter()

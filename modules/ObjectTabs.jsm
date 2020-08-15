@@ -8,8 +8,6 @@
  * @fileOverview Code responsible for showing and hiding object tabs.
  */
 
-#filter substitution
-
 var EXPORTED_SYMBOLS = ["objectMouseEventHander"];
 
 const Cc = Components.classes;
@@ -17,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "Prefs.jsm");
 Cu.import(baseURL + "RequestNotifier.jsm");
@@ -155,7 +153,7 @@ var objTabs =
       // Load CSS asynchronously
       try {
         let request = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
-        request.open("GET", "chrome://@ADDON_CHROME_NAME@/content/objtabs.css");
+        request.open("GET", "chrome://adblocker/content/objtabs.css");
         request.overrideMimeType("text/plain");
 
         let me = this;

@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview FilterNotifier class manages listeners and distributes messages
  * about filter changes to them.

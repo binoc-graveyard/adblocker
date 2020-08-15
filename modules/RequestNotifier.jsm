@@ -4,8 +4,6 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#filter substitution
-
 /**
  * @fileOverview Stores Adblock Plus data to be attached to a window.
  */
@@ -17,7 +15,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-let baseURL = "resource://@ADDON_CHROME_NAME@/modules/";
+let baseURL = "resource://adblocker/modules/";
 Cu.import(baseURL + "Utils.jsm");
 Cu.import(baseURL + "FilterClasses.jsm");
 Utils.runAsync(Cu.import, Cu, baseURL + "ContentPolicy.jsm");  // delay to avoid circular imports
