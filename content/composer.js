@@ -4,8 +4,8 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-let nodes = null;
-let item = null;
+var nodes = null;
+var item = null;
 var advancedMode = false;
 
 function init()
