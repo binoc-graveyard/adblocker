@@ -6,7 +6,7 @@
 
 let nodes = null;
 let item = null;
-let advancedMode = false;
+var advancedMode = false;
 
 function init()
 {
